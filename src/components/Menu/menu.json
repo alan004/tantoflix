@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "name": "Início",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "name": "Produtos",
+      "path": ""
+    },
+    {
+      "id": 3,
+      "name": "Sobre Nós",
+      "path": ""
+    },
+    {
+      "id": 4,
+      "name": "Contato",
+      "path": ""
+    }
+  ]
