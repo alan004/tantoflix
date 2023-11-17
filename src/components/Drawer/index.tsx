@@ -20,6 +20,7 @@ import itens from "./menu.json";
 import HomeIcon from "@mui/icons-material/Home";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Link from "next/link";
+import { getMovieBySearch } from "@/api/getMovieBySearch";
 
 const drawerWidth = 240;
 
@@ -96,7 +97,7 @@ export default function ResponsiveDrawer(props: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Search></Search>
+          <Search onSearch={(query) => getMovieBySearch(query, props.apiKey)} />
         </Toolbar>
       </AppBar>
       <Box

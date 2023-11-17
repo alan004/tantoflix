@@ -1,4 +1,6 @@
 // src/app/layout.tsx
+require("dotenv").config();
+const apiKey = process.env.TMDB_API_KEY;
 import CustomTheme from "@/styles/CustomTheme";
 import { Container, CssBaseline } from "@mui/material";
 import type { Metadata } from "next";
@@ -23,7 +25,7 @@ export default function RootLayout({
         <CustomTheme>
           <CssBaseline />
           <Container>
-            <ResponsiveDrawer>{children}</ResponsiveDrawer>
+            <ResponsiveDrawer apiKey={apiKey}>{children}</ResponsiveDrawer>
           </Container>
         </CustomTheme>
       </body>
