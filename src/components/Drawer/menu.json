@@ -2,21 +2,21 @@
   {
     "id": 1,
     "name": "Início",
-    "path": "/"
+    "path": "/Popular"
   },
   {
     "id": 2,
-    "name": "Produtos",
-    "path": ""
+    "name": "Favoritos",
+    "path": "/Teste"
   },
   {
     "id": 3,
-    "name": "Sobre Nós",
+    "name": "Sorteio",
     "path": ""
   },
   {
     "id": 4,
-    "name": "Contato",
+    "name": "Sobre Nós",
     "path": ""
   }
 ]

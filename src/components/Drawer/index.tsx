@@ -19,6 +19,7 @@ import Search from "../Search";
 import itens from "./menu.json";
 import HomeIcon from "@mui/icons-material/Home";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Link from "next/link";
 
 const drawerWidth = 240;
 
@@ -40,14 +41,23 @@ export default function ResponsiveDrawer(props: any) {
       <Divider />
       <List>
         {itens.map((e) => (
-          <ListItem key={e.name} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {e.id !== 1 ? <CheckCircleIcon /> : <HomeIcon />}
-              </ListItemIcon>
-              <ListItemText primary={e.name} />
-            </ListItemButton>
-          </ListItem>
+          <Link
+            style={{
+              color: "white",
+              textDecoration: "none",
+            }}
+            href={e.path}
+            key={e.name}
+          >
+            <ListItem key={e.name} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {e.id !== 1 ? <CheckCircleIcon /> : <HomeIcon />}
+                </ListItemIcon>
+                <ListItemText primary={e.name} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </div>
