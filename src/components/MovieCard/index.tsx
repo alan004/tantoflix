@@ -66,7 +66,17 @@ export default function MovieCard({
           >
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: "-webkit-box",
+              overflow: "hidden",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 5,
+              textOverflow: "ellipsis",
+            }}
+          >
             {description}
           </Typography>
         </CardContent>
