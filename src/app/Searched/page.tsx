@@ -4,6 +4,7 @@ import TantoFlixPage from "@/components/TantoFlixPage";
 import { getMovieBySearch } from "@/api/getMovieBySearch";
 import { useSearchParams } from "next/navigation";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
+import { Typography } from "@mui/material";
 
 const SearchResults: React.FC = () => {
   const apiKey = process.env.TMDB_API_KEY;
@@ -21,7 +22,7 @@ const SearchResults: React.FC = () => {
 
   return (
     <div>
-      <h1>Resultados da Pesquisa</h1>
+      <Typography variant="h4">Resultados da Pesquisa</Typography>
       {movies.results.length > 0 ? (
         <TantoFlixPage movies={movies.results} />
       ) : (

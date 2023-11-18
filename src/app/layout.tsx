@@ -6,6 +6,7 @@ import { Container, CssBaseline } from "@mui/material";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ResponsiveDrawer from "@/components/Drawer";
+import { FavoritesProvider } from "@/context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <CustomTheme>
           <CssBaseline />
-          <Container>
-            <ResponsiveDrawer apiKey={apiKey}>{children}</ResponsiveDrawer>
-          </Container>
+          <FavoritesProvider>
+            <Container>
+              <ResponsiveDrawer apiKey={apiKey}>{children}</ResponsiveDrawer>
+            </Container>
+          </FavoritesProvider>
         </CustomTheme>
       </body>
     </html>

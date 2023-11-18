@@ -1,4 +1,6 @@
+"use client";
 import * as React from "react";
+import { useFavorites } from "../../context";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -7,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MovieCardModal from "./MovieCardModal";
-import { Truculenta } from "next/font/google";
 
 export default function MovieCard({
   movie,
@@ -34,6 +35,9 @@ export default function MovieCard({
   const description = longDescription;
   const longTitle = truncateString(movie.title, 38);
   const title = longTitle ? longTitle : movie.title;
+
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const isFavorite = favorites && favorites.some((fav) => fav.id === movie.id);
 
   return (
     <Card sx={{ maxWidth: 275 }}>
@@ -81,8 +85,13 @@ export default function MovieCard({
           </Typography>
         </CardContent>
         <CardActions sx={{ paddingBottom: "1rem" }}>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+          <IconButton
+            aria-label="add to favorites"
+            onClick={() => {
+              isFavorite ? removeFavorite(movie) : addFavorite(movie);
+            }}
+          >
+            <FavoriteIcon color={isFavorite ? "secondary" : "disabled"} />
           </IconButton>
           <MovieCardModal movie={movieID} apiKey={apiKey} />
         </CardActions>

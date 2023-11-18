@@ -1,5 +1,7 @@
+"use client";
 import { Typography, Box, CardMedia, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useFavorites } from "@/context";
 
 export default function MovieCardDetails({
   movie,
@@ -13,6 +15,9 @@ export default function MovieCardDetails({
     overview: string;
   };
 }) {
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const isFavorite = favorites && favorites.some((fav) => fav.id === movie.id);
+
   const genreNames = movie.genres.map((genre) => genre.name).join(", ");
   const style = {
     position: "absolute" as "absolute",
@@ -62,8 +67,13 @@ export default function MovieCardDetails({
         <Typography variant="body2" color="text.secondary">
           {movie.overview}
         </Typography>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => {
+            isFavorite ? removeFavorite(movie) : addFavorite(movie);
+          }}
+        >
+          <FavoriteIcon color={isFavorite ? "secondary" : "disabled"} />
         </IconButton>
       </div>
     </Box>
