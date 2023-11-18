@@ -55,15 +55,9 @@ export default function MovieCardDetails({
           gap: "1rem",
         }}
       >
-        <Typography variant="h5" color="text.secondary">
-          {movie.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {movie.runtime} minutos
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {genreNames}
-        </Typography>
+        <Typography variant="h4">{movie.title}</Typography>
+        <Typography variant="body2">{movie.runtime} minutos</Typography>
+        <Typography variant="body2">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
           {movie.overview}
         </Typography>
@@ -73,7 +67,10 @@ export default function MovieCardDetails({
             isFavorite ? removeFavorite(movie) : addFavorite(movie);
           }}
         >
-          <FavoriteIcon color={isFavorite ? "secondary" : "disabled"} />
+          <FavoriteIcon
+            sx={{ fontSize: "2em" }}
+            color={isFavorite ? "secondary" : "disabled"}
+          />
         </IconButton>
       </div>
     </Box>
