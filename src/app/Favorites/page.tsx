@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "@/api/getMovieDetails";
-import { useFavorites } from "../../context";
+import { useFavorites } from "@/context";
 import TantoFlixPage from "@/components/TantoFlixPage";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import { Typography } from "@mui/material";
