@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MovieCardModal from "./MovieCardModal";
+import sample from "./MoviePoster.png";
 
 export default function MovieCard({
   movie,
@@ -45,7 +46,11 @@ export default function MovieCard({
         component="img"
         alt="movie poster"
         height="412.5px"
-        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        image={
+          movie.poster_path != null
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : sample.src
+        }
       />
       <Box
         sx={{

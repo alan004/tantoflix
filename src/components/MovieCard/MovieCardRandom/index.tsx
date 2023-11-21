@@ -1,4 +1,5 @@
 import { Typography, Box, CardMedia } from "@mui/material";
+import sample from "../MoviePoster.png";
 
 export default function MovieCardRandom({
   movie,
@@ -32,7 +33,11 @@ export default function MovieCardRandom({
           component="img"
           height="auto"
           width="100%"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          image={
+            movie.poster_path != null
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : sample.src
+          }
           alt="movie poster"
         />
       </figure>

@@ -19,6 +19,8 @@ import itens from "./menu.json";
 import HomeIcon from "@mui/icons-material/Home";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Link from "next/link";
+import logo from "./TantoflixLogo.png";
+import Image from "next/image";
 
 const drawerWidth = 240;
 
@@ -33,9 +35,7 @@ export default function ResponsiveDrawer(props: any) {
   const drawer = (
     <div>
       <Toolbar>
-        <Typography variant="h6" noWrap component="div">
-          TantoFlix
-        </Typography>
+        <Image alt="logo Tantoflix" src={logo} width={300} height={40} />
       </Toolbar>
       <Divider />
       <List>

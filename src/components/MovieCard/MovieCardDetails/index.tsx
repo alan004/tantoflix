@@ -2,6 +2,7 @@
 import { Typography, Box, CardMedia, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "@/context";
+import sample from "../MoviePoster.png";
 
 export default function MovieCardDetails({
   movie,
@@ -28,7 +29,7 @@ export default function MovieCardDetails({
     height: "auto",
     display: "flex",
     borderRadius: ".5rem",
-    gap: "1rem",
+    gap: "1.5rem",
     flexDirecion: "row",
     bgcolor: "background.paper",
     border: "none",
@@ -37,12 +38,16 @@ export default function MovieCardDetails({
   };
   return (
     <Box sx={style}>
-      <figure style={{ width: "50%" }}>
+      <figure style={{ width: "50%", margin: "0" }}>
         <CardMedia
           component="img"
           height="auto"
           width="100%"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          image={
+            movie.poster_path != null
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : sample.src
+          }
           alt="movie poster"
         />
       </figure>
@@ -56,8 +61,8 @@ export default function MovieCardDetails({
         }}
       >
         <Typography variant="h4">{movie.title}</Typography>
-        <Typography variant="body2">{movie.runtime} minutos</Typography>
-        <Typography variant="body2">{genreNames}</Typography>
+        <Typography variant="body1">{movie.runtime} minutos</Typography>
+        <Typography variant="body1">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
           {movie.overview}
         </Typography>
@@ -70,7 +75,7 @@ export default function MovieCardDetails({
           <FavoriteIcon
             sx={{ fontSize: "2em" }}
             color={isFavorite ? "secondary" : "disabled"}
-          />
+          />{" "}
         </IconButton>
       </div>
     </Box>
