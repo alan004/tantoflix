@@ -4,12 +4,14 @@ import { useFavorites } from "@/context";
 import { useEffect, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import MovieCardRandom from "@/components/MovieCard/MovieCardRandom";
+import Link from "next/link";
 
 export default function Sorteio() {
   const apiKey = process.env.TMDB_API_KEY;
   const { favorites } = useFavorites();
   const [movies, setMovies] = useState([]);
   const [sorteado, setSorteado] = useState();
+  console.log(movies);
 
   useEffect(() => {
     Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
@@ -29,7 +31,7 @@ export default function Sorteio() {
 
   return (
     <>
-      {sorteado ? (
+      {sorteado && movies.length > 0 ? (
         <>
           <Box
             sx={{
@@ -61,16 +63,30 @@ export default function Sorteio() {
           }}
         >
           <Typography variant="h4">
-            Clique e sorteie um filme de sua lista de favoritos!
+            {movies.length > 0
+              ? "Clique e sorteie um filme de sua lista de favoritos!"
+              : "Parece que não há nenhum filme nos seus favoritos :("}
           </Typography>
-          <Button
-            onClick={() => handleClick(movies)}
-            size="large"
-            variant="contained"
-            color="secondary"
-          >
-            Sortear Filme
-          </Button>
+          {movies.length > 0 ? (
+            <Button
+              onClick={() => handleClick(movies)}
+              size="large"
+              variant="contained"
+              color="secondary"
+            >
+              Sortear Filme
+            </Button>
+          ) : (
+            <Button size="large" variant="contained" color="secondary">
+              <Link
+                style={{ color: "black", textDecoration: "none" }}
+                href={"/"}
+              >
+                {" "}
+                Ir para página inicial
+              </Link>
+            </Button>
+          )}
         </Box>
       )}
     </>
