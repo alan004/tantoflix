@@ -2,7 +2,8 @@
 import { Typography, Box, CardMedia, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "@/context";
-import sample from "../MoviePoster.png";
+import sampleImage from "../MoviePoster.png";
+import samples from "../samples.json";
 
 export default function MovieCardDetails({
   movie,
@@ -46,7 +47,7 @@ export default function MovieCardDetails({
           image={
             movie.poster_path != null
               ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-              : sample.src
+              : sampleImage.src
           }
           alt="movie poster"
         />
@@ -64,7 +65,7 @@ export default function MovieCardDetails({
         <Typography variant="body1">{movie.runtime} minutos</Typography>
         <Typography variant="body1">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview}
+          {movie.overview != null ? movie.overview : samples.descricao}
         </Typography>
         <IconButton
           aria-label="add to favorites"

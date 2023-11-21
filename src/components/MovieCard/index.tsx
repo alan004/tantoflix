@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MovieCardModal from "./MovieCardModal";
-import sample from "./MoviePoster.png";
+import sampleImage from "./MoviePoster.png";
+import samples from "./samples.json";
 
 export default function MovieCard({
   movie,
@@ -49,7 +50,7 @@ export default function MovieCard({
         image={
           movie.poster_path != null
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : sample.src
+            : sampleImage.src
         }
       />
       <Box
@@ -86,7 +87,7 @@ export default function MovieCard({
               textOverflow: "ellipsis",
             }}
           >
-            {description}
+            {description != null ? description : samples.descricao}
           </Typography>
         </CardContent>
         <CardActions sx={{ paddingBottom: "1rem" }}>

@@ -1,5 +1,6 @@
 import { Typography, Box, CardMedia } from "@mui/material";
-import sample from "../MoviePoster.png";
+import sampleImage from "../MoviePoster.png";
+import samples from "../samples.json";
 
 export default function MovieCardRandom({
   movie,
@@ -36,7 +37,7 @@ export default function MovieCardRandom({
           image={
             movie.poster_path != null
               ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-              : sample.src
+              : sampleImage.src
           }
           alt="movie poster"
         />
@@ -54,7 +55,7 @@ export default function MovieCardRandom({
         <Typography variant="body2">{movie.runtime} minutos</Typography>
         <Typography variant="body2">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview}
+          {movie.overview != null ? movie.overview : samples.descricao}
         </Typography>
       </div>
     </Box>
