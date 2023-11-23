@@ -55,7 +55,7 @@ export default function MovieCardRandom({
         <Typography variant="body2">{movie.runtime} minutos</Typography>
         <Typography variant="body2">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview != null ? movie.overview : samples.descricao}
+          {movie.overview != "" ? movie.overview : samples.descricao}
         </Typography>
       </div>
     </Box>

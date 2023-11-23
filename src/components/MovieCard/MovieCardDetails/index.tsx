@@ -65,7 +65,7 @@ export default function MovieCardDetails({
         <Typography variant="body1">{movie.runtime} minutos</Typography>
         <Typography variant="body1">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview != null ? movie.overview : samples.descricao}
+          {movie.overview != "" ? movie.overview : samples.descricao}
         </Typography>
         <IconButton
           aria-label="add to favorites"

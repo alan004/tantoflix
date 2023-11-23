@@ -87,7 +87,7 @@ export default function MovieCard({
               textOverflow: "ellipsis",
             }}
           >
-            {description != null ? description : samples.descricao}
+            {description != "" ? description : samples.descricao}
           </Typography>
         </CardContent>
         <CardActions sx={{ paddingBottom: "1rem" }}>
