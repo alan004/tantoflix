@@ -21,6 +21,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Link from "next/link";
 import logo from "./TantoflixLogo.png";
 import Image from "next/image";
+import Footer from "../Footer";
 
 const drawerWidth = 240;
 
@@ -149,7 +150,10 @@ export default function ResponsiveDrawer(props: any) {
         }}
       >
         <Toolbar />
-        <>{props.children}</>
+        <>
+          {props.children}
+          <Footer />
+        </>
       </Box>
     </Box>
   );

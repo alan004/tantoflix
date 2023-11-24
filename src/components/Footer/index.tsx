@@ -30,12 +30,10 @@ export default function Footer() {
           flexDirection: "row",
           justifyContent: "flex-start",
           gap: "1rem",
+          paddingTop: ".5rem",
         }}
       >
-        <Link
-          tLinkrget="_blLinknk"
-          href="https://www.linkedin.com/in/alan-abilio/"
-        >
+        <Link target="_blank" href="https://www.linkedin.com/in/alan-abilio/">
           <Image src={linkedin} alt="Logo Linkedin" />
         </Link>
         <Link target="_blank" href="https://github.com/alan004">

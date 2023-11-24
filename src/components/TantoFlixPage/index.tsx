@@ -3,7 +3,6 @@ const apiKey = process.env.TMDB_API_KEY;
 import { Box } from "@mui/material";
 import MovieCard from "../MovieCard";
 import SkeletonTantoFlixPage from "./Skeleton";
-import Footer from "../Footer";
 
 export default function TantoFlixPage({ movies }) {
   return (
@@ -25,7 +24,6 @@ export default function TantoFlixPage({ movies }) {
       ) : (
         <SkeletonTantoFlixPage />
       )}
-      <Footer />
     </>
   );
 }

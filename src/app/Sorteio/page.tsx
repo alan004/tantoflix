@@ -11,7 +11,6 @@ export default function Sorteio() {
   const { favorites } = useFavorites();
   const [movies, setMovies] = useState([]);
   const [sorteado, setSorteado] = useState();
-  console.log(movies);
 
   useEffect(() => {
     Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
