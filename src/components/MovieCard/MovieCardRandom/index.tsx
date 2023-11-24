@@ -26,10 +26,11 @@ export default function MovieCardRandom({
     border: "none",
     boxShadow: 24,
     p: 4,
+    marginBottom: "1.5rem",
   };
   return (
     <Box sx={style}>
-      <figure style={{ width: "50%" }}>
+      <figure style={{ width: "50%", margin: "0" }}>
         <CardMedia
           component="img"
           height="auto"

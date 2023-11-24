@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import { Typography } from "@mui/material";
 import NotFound from "@/components/NotFound";
+import DefaultTitle from "@/components/DefaultTitle";
 
 const SearchResults: React.FC = () => {
   const apiKey = process.env.TMDB_API_KEY;
@@ -41,7 +42,7 @@ const SearchResults: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h4">Resultados da Pesquisa</Typography>
+      <DefaultTitle text={["Resultados da Pesquisa:"]} />
       {movieNotFoundMessage ? (
         <NotFound texto={["Nenhum filme encontrado"]} />
       ) : movies.results.length > 0 ? (

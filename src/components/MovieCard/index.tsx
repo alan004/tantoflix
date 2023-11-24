@@ -97,7 +97,10 @@ export default function MovieCard({
               isFavorite ? removeFavorite(movie) : addFavorite(movie);
             }}
           >
-            <FavoriteIcon color={isFavorite ? "secondary" : "disabled"} />
+            <FavoriteIcon
+              sx={{ fontSize: "2rem" }}
+              color={isFavorite ? "secondary" : "disabled"}
+            />
           </IconButton>
           <MovieCardModal movie={movieID} apiKey={apiKey} />
         </CardActions>

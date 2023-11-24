@@ -17,7 +17,7 @@ export default function CustomTheme(props: any) {
       secondary: {
         main: "#E95793",
         dark: "#DA0C81",
-        contrastText: "#000",
+        contrastText: "#ffffff",
       },
     },
   });

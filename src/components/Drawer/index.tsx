@@ -13,11 +13,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Search from "../Search";
 import itens from "./menu.json";
+
 import HomeIcon from "@mui/icons-material/Home";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import InfoIcon from "@mui/icons-material/Info";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import logo from "./TantoflixLogo.png";
 import Image from "next/image";
@@ -33,6 +35,14 @@ export default function ResponsiveDrawer(props: any) {
     setMobileOpen(!mobileOpen);
   };
 
+  const corIcone = "white";
+
+  const iconesMenu = {
+    Início: <HomeIcon color={corIcone} />,
+    Favoritos: <FavoriteIcon color={corIcone} />,
+    Sorteio: <ChangeCircleIcon color={corIcone} />,
+    "Sobre Nós": <InfoIcon color={corIcone} />,
+  };
   const drawer = (
     <div>
       <Toolbar>
@@ -51,9 +61,7 @@ export default function ResponsiveDrawer(props: any) {
           >
             <ListItem key={e.name} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {e.id !== 1 ? <CheckCircleIcon /> : <HomeIcon />}
-                </ListItemIcon>
+                <ListItemIcon>{iconesMenu[e.name]}</ListItemIcon>
                 <ListItemText primary={e.name} />
               </ListItemButton>
             </ListItem>

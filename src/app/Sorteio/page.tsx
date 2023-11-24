@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import MovieCardRandom from "@/components/MovieCard/MovieCardRandom";
 import Link from "next/link";
+import DefaultTitle from "@/components/DefaultTitle";
 
 export default function Sorteio() {
   const apiKey = process.env.TMDB_API_KEY;
@@ -40,7 +41,7 @@ export default function Sorteio() {
               marginBottom: "1rem",
             }}
           >
-            <Typography variant="h4">O filme sorteado foi:</Typography>
+            <DefaultTitle text={["O filme sorteado foi:"]} />
             <Button
               onClick={() => handleClick(movies)}
               size="large"
@@ -59,13 +60,16 @@ export default function Sorteio() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            gap: "1rem",
           }}
         >
-          <Typography variant="h4">
-            {movies.length > 0
-              ? "Clique e sorteie um filme de sua lista de favoritos!"
-              : "Parece que não há nenhum filme nos seus favoritos :("}
-          </Typography>
+          <DefaultTitle
+            text={
+              movies.length > 0
+                ? ["Clique e sorteie um filme de sua lista de favoritos!"]
+                : ["Parece que não há nenhum filme nos seus favoritos :("]
+            }
+          />
           {movies.length > 0 ? (
             <Button
               onClick={() => handleClick(movies)}
@@ -78,7 +82,7 @@ export default function Sorteio() {
           ) : (
             <Button size="large" variant="contained" color="secondary">
               <Link
-                style={{ color: "black", textDecoration: "none" }}
+                style={{ color: "white", textDecoration: "none" }}
                 href={"/"}
               >
                 {" "}
