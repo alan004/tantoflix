@@ -5,30 +5,49 @@ import { getMovieBySearch } from "@/api/getMovieBySearch";
 import { useSearchParams } from "next/navigation";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import { Typography } from "@mui/material";
+import NotFound from "@/components/NotFound";
 
 const SearchResults: React.FC = () => {
   const apiKey = process.env.TMDB_API_KEY;
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   const [movies, setMovies] = useState({ results: [] });
+  const [movieNotFoundMessage, setMovieNotFoundMessage] = useState(false);
 
   useEffect(() => {
+    let timeoutId;
+
     if (query) {
-      getMovieBySearch(query as string, apiKey).then((result) => {
-        setMovies(result);
-      });
+      setMovieNotFoundMessage(false);
+      clearTimeout(timeoutId);
+      getMovieBySearch(query as string, apiKey)
+        .then((result) => {
+          setMovies(result);
+          timeoutId = setTimeout(() => {
+            if (result.results.length === 0) {
+              setMovieNotFoundMessage(true);
+            }
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error("Erro ao obter resultados da pesquisa:", error);
+        });
     }
-  }, [query]);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [query, apiKey]);
 
   return (
     <div>
       <Typography variant="h4">Resultados da Pesquisa</Typography>
-      {movies.results.length > 0 ? (
+      {movieNotFoundMessage ? (
+        <NotFound texto={["Nenhum filme encontrado"]} />
+      ) : movies.results.length > 0 ? (
         <TantoFlixPage movies={movies.results} />
       ) : (
-        <>
-          <SkeletonTantoFlixPage />
-        </>
+        <SkeletonTantoFlixPage />
       )}
     </div>
   );
