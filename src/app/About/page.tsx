@@ -24,7 +24,7 @@ export default function AboutPage() {
         <figure style={{ width: "50%", margin: "0" }}>
           <CardMedia
             component="img"
-            height="auto"
+            height="400px"
             width="100%"
             image={selfie.src}
             alt="foto do criador do site"

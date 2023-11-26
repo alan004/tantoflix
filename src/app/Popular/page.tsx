@@ -9,7 +9,9 @@ export default async function PopularMovies() {
   const movies = response.results;
   return (
     <>
-      <DefaultTitle text={["Favorite e sorteie os filmes de sua lista!"]} />
+      <DefaultTitle
+        text={["Favorite e sorteie entre os filmes de sua lista!"]}
+      />
       <TantoFlixPage movies={movies} />;
     </>
   );
