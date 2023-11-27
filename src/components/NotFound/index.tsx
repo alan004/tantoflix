@@ -16,7 +16,7 @@ export default function NotFound({ texto }) {
   return (
     <Box sx={style}>
       <Typography variant="h5" sx={{ p: ".75rem" }}>
-        {texto}. Fique com este gatinho no lugar:D
+        {texto}. Fique com este gatinho no lugar :D
       </Typography>
       <CardMedia
         component="img"
