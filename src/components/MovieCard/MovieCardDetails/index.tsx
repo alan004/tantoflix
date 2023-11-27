@@ -83,7 +83,9 @@ export default function MovieCardDetails({
           textAlign: "justify",
         }}
       >
-        <Typography variant="h4">{movie.title}</Typography>
+        <Typography variant="h4" sx={{ textAlign: "left" }}>
+          {movie.title}
+        </Typography>
         <Typography variant="body1">{movie.runtime} minutos</Typography>
         <Typography variant="body1">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
