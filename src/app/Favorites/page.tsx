@@ -12,28 +12,31 @@ export default function FavoritesPage() {
   const apiKey = process.env.TMDB_API_KEY;
   const { favorites } = useFavorites();
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
       .then((movieDetails) => {
         setMovies(movieDetails);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Erro ao obter detalhes do filme:", error);
         setMovies([]);
+        setLoading(false);
       });
   }, [favorites, apiKey]);
 
   return (
     <>
-      {movies.length > 0 ? (
+      {movies.length > 0 && !loading ? (
         <>
           <DefaultTitle text={["Sua lista de filmes favoritados!"]} />
           <TantoFlixPage movies={movies} />
         </>
       ) : (
         <div>
-          {favorites.length === 0 ? (
+          {favorites.length === 0 && !loading ? (
             <Box
               sx={{
                 display: "flex",
