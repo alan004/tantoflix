@@ -1,8 +1,12 @@
 import { Typography } from "@mui/material";
 
-export default function DefaultTitle({ text }) {
+export default function DefaultTitle({
+  text,
+  variant = "h4",
+  align = "center",
+}) {
   return (
-    <Typography align="center" variant="h4">
+    <Typography align={align} variant={variant}>
       {text}
     </Typography>
   );

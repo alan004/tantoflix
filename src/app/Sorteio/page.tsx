@@ -39,9 +39,14 @@ export default function Sorteio() {
               flexDirection: "row",
               justifyContent: "space-between",
               marginBottom: "1rem",
+              alignItems: "center",
             }}
           >
-            <DefaultTitle text={["O filme sorteado foi:"]} />
+            <DefaultTitle
+              text={["O filme sorteado foi:"]}
+              variant={["h5"]}
+              align="left"
+            />
             <Button
               onClick={() => handleClick(movies)}
               size="large"

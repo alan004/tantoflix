@@ -21,16 +21,26 @@ export default function MovieCardRandom({
     display: "flex",
     borderRadius: ".5rem",
     gap: "1rem",
-    flexDirecion: "row",
+    flexDirection: "column",
     bgcolor: "background.paper",
     border: "none",
     boxShadow: 24,
     p: 4,
     marginBottom: "1.5rem",
+    "@media (min-width: 680px)": {
+      flexDirection: "row",
+    },
   };
   return (
     <Box sx={style}>
-      <figure style={{ width: "50%", margin: "0" }}>
+      <Box
+        sx={{
+          width: { sm: "100%", md: "50%" },
+          margin: "0",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <CardMedia
           component="img"
           height="auto"
@@ -42,14 +52,18 @@ export default function MovieCardRandom({
           }
           alt="movie poster"
         />
-      </figure>
-      <div
-        style={{
-          width: "50%",
+      </Box>
+      <Box
+        sx={{
+          width: {
+            sm: "100%",
+            lg: "50%",
+          },
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
           gap: "1rem",
+          textAlign: "justify",
         }}
       >
         <Typography variant="h4">{movie.title}</Typography>
@@ -58,7 +72,7 @@ export default function MovieCardRandom({
         <Typography variant="body2" color="text.secondary">
           {movie.overview != "" ? movie.overview : samples.descricao}
         </Typography>
-      </div>
+      </Box>
     </Box>
   );
 }

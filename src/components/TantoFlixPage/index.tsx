@@ -11,11 +11,14 @@ export default function TantoFlixPage({ movies }) {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "left",
+            justifyContent: "center",
             flexWrap: "wrap",
             gap: "1rem",
             padding: "1rem 0",
             marginBottom: "1rem",
+            "@media (min-width: 680px)": {
+              justifyContent: "flex-start",
+            },
           }}
         >
           {movies.map((e) => (

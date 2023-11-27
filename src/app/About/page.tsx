@@ -9,19 +9,29 @@ export default function AboutPage() {
     display: "flex",
     borderRadius: ".5rem",
     gap: "1rem",
-    flexDirecion: "row",
+    flexDirection: "column-reverse",
     bgcolor: "background.paper",
     border: "none",
     boxShadow: 24,
     p: 4,
     margin: "1.5rem 0",
+    "@media (min-width: 680px)": {
+      flexDirection: "row",
+    },
   };
   return (
     <>
       <DefaultTitle text={["Sobre o projeto"]} />
 
       <Box sx={style}>
-        <figure style={{ width: "50%", margin: "0" }}>
+        <Box
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            margin: "0",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <CardMedia
             component="img"
             height="400px"
@@ -29,14 +39,18 @@ export default function AboutPage() {
             image={selfie.src}
             alt="foto do criador do site"
           />
-        </figure>
-        <div
-          style={{
-            width: "50%",
+        </Box>
+        <Box
+          sx={{
+            width: {
+              sm: "100%",
+              lg: "50%",
+            },
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
             gap: "1rem",
+            textAlign: "justify",
           }}
         >
           <Typography variant="body1">
@@ -59,7 +73,7 @@ export default function AboutPage() {
             TypeScript, com um toque especial da biblioteca Material-UI (MUI)
             para garantir uma interface bonita e intuitiva.
           </Typography>
-        </div>
+        </Box>
       </Box>
     </>
   );

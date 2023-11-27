@@ -85,6 +85,7 @@ export default function MovieCard({
               WebkitBoxOrient: "vertical",
               WebkitLineClamp: 5,
               textOverflow: "ellipsis",
+              textAlign: "justify",
             }}
           >
             {description != "" ? description : samples.descricao}

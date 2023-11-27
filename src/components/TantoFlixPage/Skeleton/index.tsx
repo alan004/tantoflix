@@ -7,10 +7,13 @@ export default function SkeletonTantoFlixPage() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent: "center",
           flexWrap: "wrap",
           gap: "1rem",
           padding: "1rem 0",
+          "@media (min-width: 680px)": {
+            justifyContent: "left",
+          },
         }}
       >
         {moviesSample.map((e) => (
