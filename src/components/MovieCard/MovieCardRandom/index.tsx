@@ -4,6 +4,7 @@ import samples from "../samples.json";
 
 export default function MovieCardRandom({
   movie,
+  credits,
 }: {
   movie: {
     id: number;
@@ -13,6 +14,10 @@ export default function MovieCardRandom({
     runtime: number;
     overview: string;
   };
+  credits: {
+    id: number;
+    name: string[];
+  }[];
 }) {
   const genreNames = movie.genres.map((genre) => genre.name).join(", ");
   const style = {
@@ -72,6 +77,30 @@ export default function MovieCardRandom({
         <Typography variant="body2" color="text.secondary">
           {movie.overview != "" ? movie.overview : samples.descricao}
         </Typography>
+        <Box>
+          <Typography variant="body1">Elenco</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "nowrap",
+              justifyContent: "space-between",
+              width: "100%",
+              textAlign: "center",
+              gap: "1rem",
+            }}
+          >
+            {credits.slice(0, 4).map((credit) => (
+              <Typography
+                variant="body2"
+                key={credit.id}
+                color="text.secondary"
+              >
+                {credit.name}
+              </Typography>
+            ))}
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

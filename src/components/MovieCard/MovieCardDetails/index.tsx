@@ -4,9 +4,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "@/context";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
+import { useEffect, useState } from "react";
+import { getMovieCredits } from "@/api/getMovieCredits";
 
 export default function MovieCardDetails({
   movie,
+  credits,
 }: {
   movie: {
     id: number;
@@ -16,11 +19,17 @@ export default function MovieCardDetails({
     runtime: number;
     overview: string;
   };
+  credits: {
+    id: number;
+    name: string[];
+  }[];
 }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const isFavorite = favorites && favorites.some((fav) => fav.id === movie.id);
+  const [creditos, setCreditos] = useState([]);
 
   const genreNames = movie.genres.map((genre) => genre.name).join(", ");
+
   return (
     <Box
       sx={{
@@ -91,6 +100,30 @@ export default function MovieCardDetails({
         <Typography variant="body2" color="text.secondary">
           {movie.overview != "" ? movie.overview : samples.descricao}
         </Typography>
+        <Box>
+          <Typography variant="body1">Elenco</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "nowrap",
+              justifyContent: "space-between",
+              width: "100%",
+              textAlign: "center",
+              gap: "1rem",
+            }}
+          >
+            {credits.slice(0, 3).map((credit) => (
+              <Typography
+                variant="body2"
+                key={credit.id}
+                color="text.secondary"
+              >
+                {credit.name}
+              </Typography>
+            ))}
+          </Box>
+        </Box>
         <IconButton
           aria-label="add to favorites"
           onClick={() => {

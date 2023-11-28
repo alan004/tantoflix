@@ -12,6 +12,7 @@ import * as React from "react";
 import { Button, Modal, Skeleton } from "@mui/material";
 import MovieCardDetails from "../MovieCardDetails";
 import { getMovieDetails } from "@/api/getMovieDetails";
+import { getMovieCredits } from "@/api/getMovieCredits";
 
 export default function MovieCardModal({
   movie,
@@ -22,9 +23,13 @@ export default function MovieCardModal({
 }) {
   const [open, setOpen] = React.useState(false);
   const [movieDetails, setMovieDetails] = React.useState(null);
+  const [creditos, setCreditos] = React.useState([]);
+
   const handleOpen = async () => {
     const details = await getMovieDetails(movie, apiKey);
     setMovieDetails(details);
+    const response = await getMovieCredits(movie);
+    setCreditos(response.cast);
     setOpen(true);
   };
 
@@ -52,7 +57,7 @@ export default function MovieCardModal({
         style={{ backdropFilter: "blur(5px)" }}
       >
         {movieDetails ? (
-          <MovieCardDetails movie={movieDetails} />
+          <MovieCardDetails movie={movieDetails} credits={creditos} />
         ) : (
           <Skeleton
             variant="rectangular"
