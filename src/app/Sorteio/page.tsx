@@ -7,7 +7,6 @@ import MovieCardRandom from "@/components/MovieCard/MovieCardRandom";
 import Link from "next/link";
 import DefaultTitle from "@/components/DefaultTitle";
 import { getMovieCredits } from "@/api/getMovieCredits";
-import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 
 export default function Sorteio() {
   const apiKey = process.env.TMDB_API_KEY;
@@ -15,18 +14,15 @@ export default function Sorteio() {
   const [movies, setMovies] = useState([]);
   const [sorteado, setSorteado] = useState();
   const [credits, setCredits] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
       .then((movieDetails) => {
         setMovies(movieDetails);
-        setLoading(false);
       })
       .catch((error) => {
         console.error("Erro ao obter detalhes do filme:", error);
         setMovies([]);
-        setLoading(false);
       });
   }, [favorites, apiKey]);
 
@@ -50,82 +46,76 @@ export default function Sorteio() {
 
   return (
     <>
-      {loading ? (
-        <SkeletonTantoFlixPage />
-      ) : (
+      {sorteado && movies.length > 0 ? (
         <>
-          {sorteado && movies.length > 0 && (
-            <>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginBottom: "1rem",
-                  alignItems: "center",
-                }}
-              >
-                <DefaultTitle
-                  text={["O filme sorteado foi:"]}
-                  variant={["h5"]}
-                  align="left"
-                />
-                <Button
-                  onClick={() => handleClick(movies)}
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-                >
-                  Sortear novo filme
-                </Button>
-              </Box>
-
-              <MovieCardRandom
-                key={sorteado.id}
-                movie={sorteado}
-                apiKey={apiKey}
-                credits={credits}
-              />
-            </>
-          )}
-
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: "1rem",
               alignItems: "center",
-              gap: "1rem",
             }}
           >
             <DefaultTitle
-              text={
-                movies.length > 0
-                  ? ["Clique e sorteie um filme de sua lista de favoritos!"]
-                  : ["Parece que não há nenhum filme nos seus favoritos :("]
-              }
+              text={["O filme sorteado foi:"]}
+              variant={["h5"]}
+              align="left"
             />
-            {movies.length > 0 ? (
-              <Button
-                onClick={() => handleClick(movies)}
-                size="large"
-                variant="contained"
-                color="secondary"
-              >
-                Sortear Filme
-              </Button>
-            ) : (
-              <Button size="large" variant="contained" color="secondary">
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  href={"/"}
-                >
-                  {" "}
-                  Ir para página inicial
-                </Link>
-              </Button>
-            )}
+            <Button
+              onClick={() => handleClick(movies)}
+              size="large"
+              variant="contained"
+              color="secondary"
+            >
+              Sortear novo filme
+            </Button>
           </Box>
+
+          <MovieCardRandom
+            key={sorteado.id}
+            movie={sorteado}
+            apiKey={apiKey}
+            credits={credits}
+          />
         </>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <DefaultTitle
+            text={
+              movies.length > 0
+                ? ["Clique e sorteie um filme de sua lista de favoritos!"]
+                : ["Parece que não há nenhum filme nos seus favoritos :("]
+            }
+          />
+          {movies.length > 0 ? (
+            <Button
+              onClick={() => handleClick(movies)}
+              size="large"
+              variant="contained"
+              color="secondary"
+            >
+              Sortear Filme
+            </Button>
+          ) : (
+            <Button size="large" variant="contained" color="secondary">
+              <Link
+                style={{ color: "white", textDecoration: "none" }}
+                href={"/"}
+              >
+                {" "}
+                Ir para página inicial
+              </Link>
+            </Button>
+          )}
+        </Box>
       )}
     </>
   );
