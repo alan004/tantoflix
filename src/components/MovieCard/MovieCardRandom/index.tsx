@@ -71,7 +71,9 @@ export default function MovieCardRandom({
           textAlign: "justify",
         }}
       >
-        <Typography variant="h4">{movie.title}</Typography>
+        <Typography variant="h4" sx={{ textAlign: "left" }}>
+          {movie.title}
+        </Typography>
         <Typography variant="body2">{movie.runtime} minutos</Typography>
         <Typography variant="body2">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">

@@ -7,6 +7,7 @@ import MovieCardRandom from "@/components/MovieCard/MovieCardRandom";
 import Link from "next/link";
 import DefaultTitle from "@/components/DefaultTitle";
 import { getMovieCredits } from "@/api/getMovieCredits";
+import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 
 export default function Sorteio() {
   const apiKey = process.env.TMDB_API_KEY;
@@ -14,15 +15,18 @@ export default function Sorteio() {
   const [movies, setMovies] = useState([]);
   const [sorteado, setSorteado] = useState();
   const [credits, setCredits] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
       .then((movieDetails) => {
         setMovies(movieDetails);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Erro ao obter detalhes do filme:", error);
         setMovies([]);
+        setLoading(false);
       });
   }, [favorites, apiKey]);
 
@@ -46,7 +50,9 @@ export default function Sorteio() {
 
   return (
     <>
-      {sorteado && movies.length > 0 ? (
+      {loading ? (
+        <SkeletonTantoFlixPage />
+      ) : sorteado && movies.length > 0 ? (
         <>
           <Box
             sx={{
