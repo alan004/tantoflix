@@ -11,7 +11,7 @@ export default function SkeletonTantoFlixPage() {
           flexWrap: "wrap",
           gap: "1rem",
           padding: "1rem 0",
-          "@media (min-width: 680px)": {
+          "@media (min-width: 1025px)": {
             justifyContent: "left",
           },
         }}

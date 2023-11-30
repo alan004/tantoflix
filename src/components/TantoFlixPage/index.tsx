@@ -16,7 +16,7 @@ export default function TantoFlixPage({ movies }) {
             gap: "1rem",
             padding: "1rem 0",
             marginBottom: "1rem",
-            "@media (min-width: 680px)": {
+            "@media (min-width: 1025px)": {
               justifyContent: "flex-start",
             },
           }}
