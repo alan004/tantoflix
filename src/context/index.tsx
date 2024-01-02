@@ -1,10 +1,19 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const isClient = typeof window !== "undefined";
+  const initialFavorites =
+    (isClient && JSON.parse(localStorage.getItem("favorites"))) || [];
+  const [favorites, setFavorites] = useState(initialFavorites);
+
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  }, [favorites, isClient]);
 
   const addFavorite = (item) => {
     setFavorites((prevFavorites) => [...prevFavorites, item]);
