@@ -1,6 +1,7 @@
 # Tantoflix
 
 Construído em ReactJS, NextJS e Typescript, o Tantoflix é um projeto que visa solucionar a eterna dúvida "o que vou assistir hoje?". Com ele, você pode buscar por filmes, ver detalhes sobre eles e salvá-los em sua lista de favoritos para realizar um sorteio aleatório e decidir qual filme assistir.
+![tantoflix](https://github.com/alan004/tantoflix/assets/17684918/8523a85f-c3af-4b91-82a8-e0a12fb52752)
 
 ## Tecnologias utilizadas
 
