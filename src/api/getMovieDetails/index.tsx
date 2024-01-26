@@ -1,6 +1,6 @@
 import axios from "axios";
-
-export async function getMovieDetails(movieId, apiKey) {
+const apiKey = process.env.TMDB_API_KEY;
+export async function getMovieDetails(movieId: number) {
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`

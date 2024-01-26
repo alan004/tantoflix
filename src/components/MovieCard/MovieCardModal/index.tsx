@@ -14,19 +14,13 @@ import MovieCardDetails from "../MovieCardDetails";
 import { getMovieDetails } from "@/api/getMovieDetails";
 import { getMovieCredits } from "@/api/getMovieCredits";
 
-export default function MovieCardModal({
-  movie,
-  apiKey,
-}: {
-  movie: number;
-  apiKey: string;
-}) {
+export default function MovieCardModal({ movie }: { movie: number }) {
   const [open, setOpen] = React.useState(false);
   const [movieDetails, setMovieDetails] = React.useState(null);
   const [creditos, setCreditos] = React.useState([]);
 
   const handleOpen = async () => {
-    const details = await getMovieDetails(movie, apiKey);
+    const details = await getMovieDetails(movie);
     setMovieDetails(details);
     const response = await getMovieCredits(movie);
     setCreditos(response.cast);

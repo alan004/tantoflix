@@ -12,7 +12,7 @@ export default function Search() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     const params = new URLSearchParams(searchParams);
     if (inputContent) {

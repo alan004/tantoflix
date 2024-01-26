@@ -4,24 +4,22 @@ import TantoFlixPage from "@/components/TantoFlixPage";
 import { getMovieBySearch } from "@/api/getMovieBySearch";
 import { useSearchParams } from "next/navigation";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
-import { Typography } from "@mui/material";
 import NotFound from "@/components/NotFound";
 import DefaultTitle from "@/components/DefaultTitle";
 
 const SearchResults: React.FC = () => {
-  const apiKey = process.env.TMDB_API_KEY;
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   const [movies, setMovies] = useState({ results: [] });
   const [movieNotFoundMessage, setMovieNotFoundMessage] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId: any;
 
     if (query) {
       setMovieNotFoundMessage(false);
       clearTimeout(timeoutId);
-      getMovieBySearch(query as string, apiKey)
+      getMovieBySearch(query as string)
         .then((result) => {
           setMovies(result);
           timeoutId = setTimeout(() => {
@@ -38,7 +36,7 @@ const SearchResults: React.FC = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [query, apiKey]);
+  }, [query]);
 
   return (
     <div>

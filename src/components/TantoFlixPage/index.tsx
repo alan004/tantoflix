@@ -1,10 +1,10 @@
 require("dotenv").config();
-const apiKey = process.env.TMDB_API_KEY;
 import { Box } from "@mui/material";
 import MovieCard from "../MovieCard";
 import SkeletonTantoFlixPage from "./Skeleton";
+import MovieCardProps from "@/interfaces/Movie.interface";
 
-export default function TantoFlixPage({ movies }) {
+export default function TantoFlixPage({ movies }: MovieCardProps | any) {
   return (
     <>
       {movies ? (
@@ -21,8 +21,8 @@ export default function TantoFlixPage({ movies }) {
             },
           }}
         >
-          {movies.map((e) => (
-            <MovieCard movie={e} key={e.id} apiKey={apiKey} />
+          {movies.map((e: any) => (
+            <MovieCard movie={e} key={e.id} />
           ))}
         </Box>
       ) : (

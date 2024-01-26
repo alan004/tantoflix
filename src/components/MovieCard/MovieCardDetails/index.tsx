@@ -4,31 +4,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "@/context";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
-import { useEffect, useState } from "react";
-import { getMovieCredits } from "@/api/getMovieCredits";
+import MovieCardDetailsProps from "@/interfaces/Movie.interface";
 
 export default function MovieCardDetails({
   movie,
   credits,
-}: {
-  movie: {
-    id: number;
-    poster_path: string;
-    title: string;
-    genres: string[];
-    runtime: number;
-    overview: string;
-  };
-  credits: {
-    id: number;
-    name: string[];
-  }[];
-}) {
+}: MovieCardDetailsProps) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
-  const isFavorite = favorites && favorites.some((fav) => fav.id === movie.id);
-  const [creditos, setCreditos] = useState([]);
+  const isFavorite =
+    favorites && favorites.some((fav: any) => fav.id === movie?.id);
 
-  const genreNames = movie.genres.map((genre) => genre.name).join(", ");
+  const genreNames = movie?.genres.map((genre: any) => genre.name).join(", ");
 
   return (
     <Box
@@ -66,7 +52,7 @@ export default function MovieCardDetails({
           height="auto"
           width="100%"
           image={
-            movie.poster_path != null
+            movie?.poster_path != null
               ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
               : sampleImage.src
           }
@@ -93,12 +79,12 @@ export default function MovieCardDetails({
         }}
       >
         <Typography variant="h4" sx={{ textAlign: "left" }}>
-          {movie.title}
+          {movie?.title}
         </Typography>
-        <Typography variant="body1">{movie.runtime} minutos</Typography>
+        <Typography variant="body1">{movie?.runtime} minutos</Typography>
         <Typography variant="body1">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview != "" ? movie.overview : samples.descricao}
+          {movie?.overview != "" ? movie?.overview : samples.descricao}
         </Typography>
         <Box>
           <Typography variant="body1">Elenco</Typography>
@@ -113,7 +99,7 @@ export default function MovieCardDetails({
               gap: "1rem",
             }}
           >
-            {credits.slice(0, 3).map((credit) => (
+            {credits?.slice(0, 3).map((credit) => (
               <Typography
                 variant="body2"
                 key={credit.id}
@@ -127,7 +113,9 @@ export default function MovieCardDetails({
         <IconButton
           aria-label="add to favorites"
           onClick={() => {
-            isFavorite ? removeFavorite(movie) : addFavorite(movie);
+            if (movie) {
+              isFavorite ? removeFavorite(movie) : addFavorite(movie);
+            }
           }}
           sx={{ textAlign: { sm: "center", md: "left" } }}
         >

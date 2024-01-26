@@ -2,25 +2,27 @@
 import { getMovieDetails } from "@/api/getMovieDetails";
 import { useFavorites } from "@/context";
 import { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import MovieCardRandom from "@/components/MovieCard/MovieCardRandom";
 import Link from "next/link";
 import DefaultTitle from "@/components/DefaultTitle";
 import { getMovieCredits } from "@/api/getMovieCredits";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
+import FavoritesData from "@/interfaces/Favorites.interface";
+import SorteadoProps from "@/interfaces/Sorteado.interface";
 
 export default function Sorteio() {
-  const apiKey = process.env.TMDB_API_KEY;
-  const { favorites } = useFavorites();
+  const favoritesData = useFavorites() as FavoritesData;
   const [movies, setMovies] = useState([]);
-  const [sorteado, setSorteado] = useState();
+  const [sorteado, setSorteado] = useState<SorteadoProps | null>(null);
   const [credits, setCredits] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
-      .then((movieDetails) => {
-        setMovies(movieDetails);
+    const favorites = favoritesData.favorites;
+    Promise.all(favorites.map((e: any) => getMovieDetails(e.id)))
+      .then((movieDetails: any) => {
+        setMovies(movieDetails as never[]);
         setLoading(false);
       })
       .catch((error) => {
@@ -28,7 +30,7 @@ export default function Sorteio() {
         setMovies([]);
         setLoading(false);
       });
-  }, [favorites, apiKey]);
+  }, [favoritesData]);
 
   useEffect(() => {
     if (sorteado) {
@@ -41,7 +43,7 @@ export default function Sorteio() {
           setCredits([]);
         });
     }
-  }, [sorteado, apiKey]);
+  }, [sorteado]);
 
   function handleClick(movies: any) {
     const movie = movies[Math.floor(Math.random() * movies.length)];
@@ -81,7 +83,6 @@ export default function Sorteio() {
           <MovieCardRandom
             key={sorteado.id}
             movie={sorteado}
-            apiKey={apiKey}
             credits={credits}
           />
         </>

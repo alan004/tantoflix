@@ -11,21 +11,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import MovieCardModal from "./MovieCardModal";
 import sampleImage from "./MoviePoster.png";
 import samples from "./samples.json";
+import MovieCardProps from "@/interfaces/Movie.interface";
 
-export default function MovieCard({
-  movie,
-  apiKey,
-}: {
-  movie: {
-    id: number;
-    poster_path: string;
-    title: string;
-    genres: string[];
-    runtime: number;
-    overview: string;
-  };
-  apiKey: string;
-}) {
+export default function MovieCard({ movie }: MovieCardProps | any) {
   const movieID = movie.id;
   //slice movie overview
   const truncateString = (longDescription: string, maxLength: number) =>
@@ -95,7 +83,9 @@ export default function MovieCard({
           <IconButton
             aria-label="add to favorites"
             onClick={() => {
-              isFavorite ? removeFavorite(movie) : addFavorite(movie);
+              if (movie) {
+                isFavorite ? removeFavorite(movie) : addFavorite(movie);
+              }
             }}
           >
             <FavoriteIcon
@@ -103,7 +93,7 @@ export default function MovieCard({
               color={isFavorite ? "secondary" : "disabled"}
             />
           </IconButton>
-          <MovieCardModal movie={movieID} apiKey={apiKey} />
+          <MovieCardModal movie={movieID} />
         </CardActions>
       </Box>
     </Card>

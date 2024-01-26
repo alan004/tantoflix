@@ -1,6 +1,8 @@
 import { Box, CardMedia, Typography } from "@mui/material";
 import image from "@/assets/not found.jpg";
-export default function NotFound({ texto }) {
+import NotFoundProps from "../../interfaces/NotFound.interface";
+
+export default function NotFound({ texto }: NotFoundProps) {
   const style = {
     width: "100%",
     height: "auto",

@@ -7,17 +7,18 @@ import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import DefaultTitle from "@/components/DefaultTitle";
+import FavoritesData from "@/interfaces/Favorites.interface";
 
 export default function FavoritesPage() {
-  const apiKey = process.env.TMDB_API_KEY;
-  const { favorites } = useFavorites();
+  const favoritesData = useFavorites() as FavoritesData;
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all(favorites.map((e) => getMovieDetails(e.id, apiKey)))
-      .then((movieDetails) => {
-        setMovies(movieDetails);
+    const favorites = favoritesData.favorites;
+    Promise.all(favorites.map((e: any) => getMovieDetails(e.id)))
+      .then((movieDetails: any[]) => {
+        setMovies(movieDetails as never[]);
         setLoading(false);
       })
       .catch((error) => {
@@ -25,7 +26,7 @@ export default function FavoritesPage() {
         setMovies([]);
         setLoading(false);
       });
-  }, [favorites, apiKey]);
+  }, [favoritesData]);
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function FavoritesPage() {
         </>
       ) : (
         <div>
-          {favorites.length === 0 && !loading ? (
+          {movies.length === 0 && !loading ? (
             <Box
               sx={{
                 display: "flex",

@@ -35,13 +35,11 @@ export default function ResponsiveDrawer(props: any) {
     setMobileOpen(!mobileOpen);
   };
 
-  const corIcone = "white";
-
   const iconesMenu = {
-    Início: <HomeIcon color={corIcone} />,
-    Favoritos: <FavoriteIcon color={corIcone} />,
-    Sorteio: <ChangeCircleIcon color={corIcone} />,
-    "Sobre Nós": <InfoIcon color={corIcone} />,
+    Início: <HomeIcon />,
+    Favoritos: <FavoriteIcon />,
+    Sorteio: <ChangeCircleIcon />,
+    "Sobre Nós": <InfoIcon />,
   };
   const drawer = (
     <div>
@@ -61,7 +59,9 @@ export default function ResponsiveDrawer(props: any) {
           >
             <ListItem key={e.name} disablePadding>
               <ListItemButton>
-                <ListItemIcon>{iconesMenu[e.name]}</ListItemIcon>
+                <ListItemIcon>
+                  {iconesMenu[e.name as keyof typeof iconesMenu]}
+                </ListItemIcon>
                 <ListItemText primary={e.name} />
               </ListItemButton>
             </ListItem>

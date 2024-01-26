@@ -1,25 +1,13 @@
 import { Typography, Box, CardMedia } from "@mui/material";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
+import MovieCardDetailsProps from "@/interfaces/Movie.interface";
 
 export default function MovieCardRandom({
   movie,
   credits,
-}: {
-  movie: {
-    id: number;
-    poster_path: string;
-    title: string;
-    genres: string[];
-    runtime: number;
-    overview: string;
-  };
-  credits: {
-    id: number;
-    name: string[];
-  }[];
-}) {
-  const genreNames = movie.genres.map((genre) => genre.name).join(", ");
+}: MovieCardDetailsProps) {
+  const genreNames = movie?.genres.map((genre) => genre.name).join(", ");
   const style = {
     width: "100%",
     height: "auto",
@@ -51,8 +39,8 @@ export default function MovieCardRandom({
           height="auto"
           width="100%"
           image={
-            movie.poster_path != null
-              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            movie?.poster_path != null
+              ? `https://image.tmdb.org/t/p/w500${movie?.poster_path}`
               : sampleImage.src
           }
           alt="movie poster"
@@ -72,12 +60,12 @@ export default function MovieCardRandom({
         }}
       >
         <Typography variant="h4" sx={{ textAlign: "left" }}>
-          {movie.title}
+          {movie?.title}
         </Typography>
-        <Typography variant="body2">{movie.runtime} minutos</Typography>
+        <Typography variant="body2">{movie?.runtime} minutos</Typography>
         <Typography variant="body2">{genreNames}</Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie.overview != "" ? movie.overview : samples.descricao}
+          {movie?.overview != "" ? movie?.overview : samples.descricao}
         </Typography>
         <Box>
           <Typography variant="body1">Elenco</Typography>
@@ -92,7 +80,7 @@ export default function MovieCardRandom({
               gap: "1rem",
             }}
           >
-            {credits.slice(0, 4).map((credit) => (
+            {credits?.slice(0, 4).map((credit) => (
               <Typography
                 variant="body2"
                 key={credit.id}
