@@ -18,7 +18,7 @@ export default function FavoritesPage() {
     const favorites = favoritesData.favorites;
     Promise.all(favorites.map((e: any) => getMovieDetails(e.id)))
       .then((movieDetails: any[]) => {
-        setMovies(movieDetails as never[]);
+        setMovies(movieDetails.reverse() as never[]);
         setLoading(false);
       })
       .catch((error) => {

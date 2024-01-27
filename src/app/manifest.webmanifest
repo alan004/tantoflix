@@ -11,6 +11,11 @@
       "src": "https://raw.githubusercontent.com/alan004/tantoflix/main/public/appIcon.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/alan004/tantoflix/main/src/app/TantoFliXFavicon.png",
+      "sizes": "100x100",
+      "type": "image/png"
     }
   ]
 }
