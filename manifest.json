@@ -1,0 +1,21 @@
+{
+  "name": "TantoFlix",
+  "short_name": "TantoFlix",
+  "description": "Um app para cinéfilos indecisos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#610C9F",
+  "theme_color": "#E95793",
+  "icons": [
+    {
+      "src": "/app/TantoFliXFavicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/app/TantoFliXFavicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

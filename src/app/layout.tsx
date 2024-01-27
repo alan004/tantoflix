@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TantoFlix",
-  description: "Um app de sorteio para sua lista de filmes",
+  description: "Um app para cinéfilos indecisos",
 };
 
 export default function RootLayout({
