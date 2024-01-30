@@ -5,6 +5,9 @@ import { useFavorites } from "@/context";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
 import MovieCardDetailsProps from "@/interfaces/Movie.interface";
+import { ratingConverter } from "@/functions/ratingConverter";
+import { Star } from "@mui/icons-material";
+
 
 export default function MovieCardDetails({
   movie,
@@ -81,11 +84,26 @@ export default function MovieCardDetails({
         <Typography variant="h4" sx={{ textAlign: "left" }}>
           {movie?.title}
         </Typography>
-        <Typography variant="body1">{movie?.runtime} minutos</Typography>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Typography variant="body1">{movie?.runtime} minutos</Typography>
+          {movie?.vote_average !== undefined && (
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: '4px'}}>
+                <Typography variant="body1">{ratingConverter(movie.vote_average)}</Typography>
+                <Star sx={{width:'.8em', height:'.8em'}} color="secondary"/>
+            </Box>
+            )}
+        </Box>
         <Typography variant="body1">{genreNames}</Typography>
-        <Typography variant="body2" color="text.secondary">
-          {movie?.overview != "" ? movie?.overview : samples.descricao}
-        </Typography>
+        <Box sx={{ maxHeight: "150px",
+              overflowY: "auto", 
+              flex: "1", 
+              "@media (min-width: 680px)": {
+                maxHeight: "400px",
+              }}}>
+          <Typography variant="body2" color="text.secondary">
+            {movie?.overview != "" ? movie?.overview : samples.descricao}
+          </Typography>
+        </Box>
         <Box>
           <Typography variant="body1">Elenco</Typography>
           <Box
