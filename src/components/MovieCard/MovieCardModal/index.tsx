@@ -23,7 +23,7 @@ export default function MovieCardModal({ movie }: { movie: number }) {
     const details = await getMovieDetails(movie);
     setMovieDetails(details);
     const response = await getMovieCredits(movie);
-    setCreditos(response.cast);
+    setCreditos(response);
     setOpen(true);
   };
 

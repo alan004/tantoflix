@@ -35,15 +35,25 @@ export default interface MovieCardProps {
     vote_average: number;
     vote_count: number;
   };
-  credits?: MovieCardCreditsProps[];
+  credits?: MovieCardCreditsProps;
+}
+
+export interface MovieCredit {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  job: string;
 }
 
 export interface MovieCardCreditsProps {
   id: number;
-  name: string[];
+  cast: MovieCredit[];
+  crew: MovieCredit[];
 }
 
 export interface MovieCardDetailsProps {
   movie: MovieCardProps;
-  credits: MovieCardCreditsProps[];
+  credits: MovieCardCreditsProps;
 }

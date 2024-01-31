@@ -18,6 +18,7 @@ export default function MovieCardDetails({
     favorites && favorites.some((fav: any) => fav.id === movie?.id);
 
   const genreNames = movie?.genres.map((genre: any) => genre.name).join(", ");
+  console.log(credits)
 
   return (
     <Box
@@ -84,7 +85,7 @@ export default function MovieCardDetails({
         <Typography variant="h4" sx={{ textAlign: "left" }}>
           {movie?.title}
         </Typography>
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
           <Typography variant="body1">{movie?.runtime} minutos</Typography>
           {movie?.vote_average !== undefined && (
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: '4px'}}>
@@ -117,16 +118,37 @@ export default function MovieCardDetails({
               gap: "1rem",
             }}
           >
-            {credits?.slice(0, 3).map((credit) => (
-              <Typography
-                variant="body2"
-                key={credit.id}
-                color="text.secondary"
-              >
-                {credit.name}
-              </Typography>
+            {credits?.cast.slice(0, 3).map((credit) => (
+            <Typography
+              variant="body2"
+              key={credit.id}
+              color="text.secondary"
+            >
+              {credit.name}
+            </Typography>
+          ))}
+          </Box>  
+          <Typography sx={{pt: '.5rem'}} variant="body1">Direção</Typography>
+          <Box
+              sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  gap: '1rem',
+                }}>
+            {credits?.crew
+                .filter((person) => person.job === 'Director')
+                .slice(0, 2)
+                .map((director) => (
+                <Typography
+                    variant="body2"
+                    key={director.id}
+                    color="text.secondary">
+                  {director.name}
+                </Typography>
             ))}
-          </Box>
+        </Box>
         </Box>
         <IconButton
           aria-label="add to favorites"
