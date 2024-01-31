@@ -35,6 +35,9 @@ export default function MovieCardDetails({
         flexDirection: "column",
         "@media (min-width: 680px)": {
           flexDirection: "row",
+          width: "calc(100% - 3rem)",
+        },
+        "@media (min-width: 768px)": {
           width: "800px",
         },
         bgcolor: "background.paper",
@@ -99,9 +102,17 @@ export default function MovieCardDetails({
               overflowY: "auto", 
               flex: "1", 
               "@media (min-width: 680px)": {
-                maxHeight: "400px",
-              }}}>
-          <Typography variant="body2" color="text.secondary">
+                maxHeight: "30vh",
+              },
+              '&::-webkit-scrollbar': {
+                width: '4px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#e95794a4',
+                borderRadius: '4px',
+              },
+              }}>
+          <Typography variant="body2" color="text.secondary" mr={.3}>
             {movie?.overview != "" ? movie?.overview : samples.descricao}
           </Typography>
         </Box>
