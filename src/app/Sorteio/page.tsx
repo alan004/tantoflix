@@ -10,12 +10,13 @@ import { getMovieCredits } from "@/api/getMovieCredits";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import FavoritesData from "@/interfaces/Favorites.interface";
 import SorteadoProps from "@/interfaces/Sorteado.interface";
+import { MovieCardCreditsProps } from "@/interfaces/Movie.interface";
 
 export default function Sorteio() {
   const favoritesData = useFavorites() as FavoritesData;
   const [movies, setMovies] = useState([]);
   const [sorteado, setSorteado] = useState<SorteadoProps | null>(null);
-  const [credits, setCredits] = useState([]);
+  const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,11 +37,11 @@ export default function Sorteio() {
     if (sorteado) {
       getMovieCredits(sorteado.id)
         .then((response) => {
-          setCredits(response.cast);
+          setCredits(response);
         })
         .catch((error) => {
           console.error("Erro ao obter créditos do filme:", error);
-          setCredits([]);
+          setCredits(undefined);
         });
     }
   }, [sorteado]);

@@ -10,20 +10,22 @@ declare module "@mui/material/styles" {
 }
 import * as React from "react";
 import { Button, Modal, Skeleton } from "@mui/material";
+import { useState } from "react";
 import MovieCardDetails from "../MovieCardDetails";
 import { getMovieDetails } from "@/api/getMovieDetails";
 import { getMovieCredits } from "@/api/getMovieCredits";
+import { MovieCardCreditsProps } from "@/interfaces/Movie.interface";
 
 export default function MovieCardModal({ movie }: { movie: number }) {
-  const [open, setOpen] = React.useState(false);
-  const [movieDetails, setMovieDetails] = React.useState(null);
-  const [creditos, setCreditos] = React.useState([]);
+  const [open, setOpen] = useState(false);
+  const [movieDetails, setMovieDetails] = useState(null);
+  const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
 
   const handleOpen = async () => {
     const details = await getMovieDetails(movie);
     setMovieDetails(details);
     const response = await getMovieCredits(movie);
-    setCreditos(response);
+    setCredits(response);
     setOpen(true);
   };
 
@@ -51,7 +53,7 @@ export default function MovieCardModal({ movie }: { movie: number }) {
         style={{ backdropFilter: "blur(5px)" }}
       >
         {movieDetails ? (
-          <MovieCardDetails movie={movieDetails} credits={creditos} />
+          <MovieCardDetails movie={movieDetails} credits={credits} />
         ) : (
           <Skeleton
             variant="rectangular"

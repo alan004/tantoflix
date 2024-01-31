@@ -80,16 +80,37 @@ export default function MovieCardRandom({
               gap: "1rem",
             }}
           >
-            {credits?.slice(0, 4).map((credit) => (
-              <Typography
-                variant="body2"
-                key={credit.id}
-                color="text.secondary"
-              >
-                {credit.name}
-              </Typography>
+            {credits?.cast.slice(0, 3).map((credit) => (
+            <Typography
+              variant="body2"
+              key={credit.id}
+              color="text.secondary"
+            >
+              {credit.name}
+            </Typography>
+          ))}
+          </Box>  
+          <Typography sx={{pt: '.5rem'}} variant="body1">Direção</Typography>
+          <Box
+              sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  gap: '1rem',
+                }}>
+            {credits?.crew
+                .filter((person) => person.job === 'Director')
+                .slice(0, 2)
+                .map((director) => (
+                <Typography
+                    variant="body2"
+                    key={director.id}
+                    color="text.secondary">
+                  {director.name}
+                </Typography>
             ))}
-          </Box>
+        </Box>
         </Box>
       </Box>
     </Box>
