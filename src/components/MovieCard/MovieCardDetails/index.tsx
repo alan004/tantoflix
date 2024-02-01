@@ -18,7 +18,6 @@ export default function MovieCardDetails({
     favorites && favorites.some((fav: any) => fav.id === movie?.id);
 
   const genreNames = movie?.genres.map((genre: any) => genre.name).join(", ");
-  console.log(credits)
 
   return (
     <Box
