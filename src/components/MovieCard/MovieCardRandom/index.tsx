@@ -2,7 +2,7 @@ import { Typography, Box, CardMedia } from "@mui/material";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
 import MovieCardDetailsProps from "@/interfaces/Movie.interface";
-import { ratingConverter } from "@/functions/ratingConverter";
+import { ratingConverter } from "@/functions";
 import { Star } from "@mui/icons-material";
 
 export default function MovieCardRandom({

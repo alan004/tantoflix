@@ -30,7 +30,7 @@ export default function MovieCard({ movie }: MovieCardProps | any) {
   const isFavorite = favorites && favorites.some((fav) => fav.id === movie.id);
 
   return (
-    <Card sx={{ maxWidth: 275 }}>
+    <Card sx={{ maxWidth: 275, '@media (width: 820px)':{maxWidth: '226px'} }}>
       <CardMedia
         component="img"
         alt="movie poster"

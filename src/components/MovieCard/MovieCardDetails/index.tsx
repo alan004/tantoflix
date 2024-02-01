@@ -5,7 +5,7 @@ import { useFavorites } from "@/context";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
 import MovieCardDetailsProps from "@/interfaces/Movie.interface";
-import { ratingConverter } from "@/functions/ratingConverter";
+import { ratingConverter } from "@/functions";
 import { Star } from "@mui/icons-material";
 
 
