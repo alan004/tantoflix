@@ -9,7 +9,7 @@ declare module "@mui/material/styles" {
   }
 }
 import * as React from "react";
-import { Button, Modal, Skeleton } from "@mui/material";
+import { Button, Modal, Skeleton, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import MovieCardDetails from "../MovieCardDetails";
 import { getMovieDetails } from "@/api/getMovieDetails";
@@ -20,6 +20,7 @@ export default function MovieCardModal({ movie }: { movie: number }) {
   const [open, setOpen] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
   const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleOpen = async () => {
     const details = await getMovieDetails(movie);
@@ -38,11 +39,12 @@ export default function MovieCardModal({ movie }: { movie: number }) {
     <>
       <Button
         onClick={handleOpen}
-        size="large"
+        size={isMobile ? 'small' : 'large'}
         variant="contained"
         color="secondary"
+        
       >
-        Ver mais
+        {isMobile? 'Mais': 'Ver mais'}
       </Button>
 
       <Modal
