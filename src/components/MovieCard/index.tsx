@@ -47,10 +47,10 @@ export default function MovieCard({ movie }: MovieCardProps | any) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          height: isMobile ? '158px': '275px',
+          height: isMobile ? 'auto': '275px',
         }}
       >
-        <CardContent>
+        {isMobile ? (<></>) : (<CardContent>
           <Typography
             gutterBottom
             variant={isMobile ? 'body1': isTablet ? 'body1' : 'h5' }
@@ -65,7 +65,7 @@ export default function MovieCard({ movie }: MovieCardProps | any) {
           >
             {title}
           </Typography>
-          {isMobile ? (<></>) : (<Typography
+          <Typography
             variant="body2"
             color="text.secondary"
             sx={{
@@ -78,9 +78,8 @@ export default function MovieCard({ movie }: MovieCardProps | any) {
             }}
           >
             {description != "" ? description : samples.descricao}
-          </Typography>)}
-          
-        </CardContent>
+          </Typography>
+        </CardContent>)}
         <CardActions sx={{ paddingBottom: "1rem" }}>
           <IconButton
             aria-label="add to favorites"
