@@ -1,5 +1,5 @@
 "use client";
-import { Typography, Box, CardMedia, IconButton } from "@mui/material";
+import { Typography, Box, CardMedia, IconButton, useMediaQuery } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavorites } from "@/context";
 import sampleImage from "../MoviePoster.png";
@@ -7,7 +7,6 @@ import samples from "../samples.json";
 import MovieCardDetailsProps from "@/interfaces/Movie.interface";
 import { ratingConverter } from "@/functions";
 import { Star } from "@mui/icons-material";
-
 
 export default function MovieCardDetails({
   movie,
@@ -18,6 +17,7 @@ export default function MovieCardDetails({
     favorites && favorites.some((fav: any) => fav.id === movie?.id);
 
   const genreNames = movie?.genres.map((genre: any) => genre.name).join(", ");
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   return (
     <Box
@@ -39,10 +39,17 @@ export default function MovieCardDetails({
         "@media (min-width: 768px)": {
           width: "800px",
         },
-        bgcolor: "background.paper",
         border: "none",
         boxShadow: 24,
         p: 4,
+        bgcolor: isMobile ? "rgba(0, 0, 0, 0.75)" : "background.paper",
+        backgroundImage: isMobile ? (movie?.poster_path != null
+        ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
+        : `url(${sampleImage.src})`) : "none",
+        backgroundBlendMode: "multiply",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Box
@@ -53,7 +60,7 @@ export default function MovieCardDetails({
           justifyContent: "center",
         }}
       >
-        <CardMedia
+        {isMobile ? (null):(<CardMedia
           component="img"
           height="auto"
           width="100%"
@@ -69,7 +76,8 @@ export default function MovieCardDetails({
               width: "100%",
             },
           }}
-        />
+        />)}
+        
       </Box>
       <Box
         sx={{
@@ -97,7 +105,7 @@ export default function MovieCardDetails({
             )}
         </Box>
         <Typography variant="body1">{genreNames}</Typography>
-        <Box sx={{ maxHeight: "150px",
+        <Box sx={{ maxHeight: "200px",
               overflowY: "auto", 
               flex: "1", 
               "@media (min-width: 680px)": {
