@@ -48,7 +48,7 @@ export default function Footer() {
         <Typography
           sx={{ color: "white", fontSize: "14px", textDecoration: "none" }}
         >
-          Desenvolvido por Alan004
+          Desenvolvido por Alan Abilio
         </Typography>
       </Link>
     </Container>

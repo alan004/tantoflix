@@ -55,14 +55,13 @@ export default function AboutPage() {
         >
           <Typography variant="body1">
             {" "}
-            Projeto criado para resolver o seu problema nunca saber o que
-            assistir mesmo com a lista lotada!
+            Tantoflix, um app para cinéfilos indecisos!
           </Typography>
           <Divider sx={{ bgcolor: "secondary.main" }} />
           <Typography variant="body2" color="text.secondary">
             Me chamo Alan e depois de o perceber que passava mais tempo
             escolhendo filmes do que realmente assistindo, resolvi criar uma
-            solução para este problema. A proposta é simples: ao invés de se
+            solução para este problema, o Tantoflix. A proposta é simples: ao invés de se
             perder em uma lista interminável de opções, você pode favoritar seus
             filmes preferidos. Quando chegar a hora da escolha, é só apertar um
             botão e deixar o destino cinematográfico ser decidido por sorteio.
