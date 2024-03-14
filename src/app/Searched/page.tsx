@@ -10,8 +10,11 @@ import DefaultTitle from "@/components/DefaultTitle";
 const SearchResults: React.FC = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
-  const [movies, setMovies] = useState({ results: [] });
+  const [movies, setMovies] = useState<{ results: any[] | never[] }>({ results: [] });
   const [movieNotFoundMessage, setMovieNotFoundMessage] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const firstRequest = movies.results.length === 0;
 
   useEffect(() => {
     let timeoutId: any;
@@ -19,9 +22,10 @@ const SearchResults: React.FC = () => {
     if (query) {
       setMovieNotFoundMessage(false);
       clearTimeout(timeoutId);
-      getMovieBySearch(query as string)
+      getMovieBySearch(query as string, page)
         .then((result) => {
-          setMovies(result);
+          firstRequest ? setMovies(result) : setMovies((prevMovies) => ({ results: [...prevMovies.results, ...(result?.results || [])] }));
+          setTotalPages(result.total_pages)
           timeoutId = setTimeout(() => {
             if (result.results.length === 0) {
               setMovieNotFoundMessage(true);
@@ -36,7 +40,22 @@ const SearchResults: React.FC = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [query]);
+  }, [query, page]);
+
+ 
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY + 500 >= document.body.offsetHeight && page < totalPages) {
+        setPage((prevPage) => Math.min(prevPage + 1, totalPages))
+      }
+    };
+   useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [page, totalPages]);
+  
 
   return (
     <div>
@@ -44,7 +63,7 @@ const SearchResults: React.FC = () => {
       {movieNotFoundMessage ? (
         <NotFound texto={["Nenhum filme encontrado"]} />
       ) : movies.results.length > 0 ? (
-        <TantoFlixPage movies={movies.results} />
+        <TantoFlixPage movies={movies.results} />  
       ) : (
         <SkeletonTantoFlixPage />
       )}
