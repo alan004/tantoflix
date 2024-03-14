@@ -26,14 +26,15 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
   const [genreId, setGenre] = useState(0)
 
   useEffect(() => {
-    if (!isFiltered)
-      getPopularMovies(page).then((data) => {        
-        setMovies((prevMovies) => [...prevMovies, ...data.results])
+    const firstRequest = movies.length === 0
+    if (!isFiltered){
+       getPopularMovies(page).then((data) => {     
+        firstRequest ? setMovies(data.results) : setMovies((prevMovies) => [...prevMovies, ...data.results])   
         setIsLoading(false)
-      })
+    })}  
     if (isFiltered) {
       filterGenres(genreId, page).then((data) => {
-        setMovies((prevMovies) => [...prevMovies, ...data.results])
+        firstRequest ? setMovies(data.results) : setMovies((prevMovies) => [...prevMovies, ...data.results])   
         setIsLoading(false)
       })
     }

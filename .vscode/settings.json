@@ -1,10 +1,11 @@
 {
-    "cSpell.words": [
-        "favoritados",
-        "favoritar",
-        "Flix",
-        "imdb",
-        "Tantoflix",
-        "TMDB"
-    ]
+  "cSpell.words": [
+    "favoritados",
+    "favoritar",
+    "Flix",
+    "imdb",
+    "Tantoflix",
+    "TMDB"
+  ],
+  "editor.formatOnSave": false
 }
