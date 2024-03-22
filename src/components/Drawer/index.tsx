@@ -39,7 +39,7 @@ export default function ResponsiveDrawer(props: any) {
     Início: <HomeIcon />,
     Favoritos: <FavoriteIcon />,
     Sorteio: <ChangeCircleIcon />,
-    "Sobre Nós": <InfoIcon />,
+    Sobre: <InfoIcon />,
   };
   const drawer = (
     <div>

@@ -1,0 +1,32 @@
+  [{
+      "id": 1,
+      "nome": "Sorteio de filmes favoritos",
+      "descricao": "Realiza um sorteio entre os filmes favoritos do usuário."
+    },
+    {
+      "id": 2,
+      "nome": "Lista de Favoritos",
+      "descricao": "Permite ao usuário favoritar filmes e gerenciar uma lista de favoritos."
+
+    },
+    {
+      "id": 3,
+      "nome": "Detalhes do filme",
+      "descricao": "Apresenta detalhes específicos de um filme selecionado."
+    },
+    {
+      "id": 4,
+      "nome": "Filmes populares",
+      "descricao": "Exibe uma lista de filmes populares."
+    },
+    {
+      "id": 5,
+      "nome": "Busca de filmes por nome",
+      "descricao": "Permite buscar filmes por nome."
+    },
+    {
+      "id": 6,
+      "nome": "Filtro por gênero",
+      "descricao": "Permite buscar filmes por gênero."
+    }
+  ]
