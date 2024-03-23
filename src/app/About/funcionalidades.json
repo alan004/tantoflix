@@ -1,5 +1,5 @@
 {
-  "en": [
+  "en-US": [
     {
       "id": 1,
       "name": "Favorite Movies Draw",
@@ -31,7 +31,7 @@
       "description": "Allows searching for movies by genre."
     }
   ],
-  "pt": [
+  "pt-BR": [
     {
       "id": 1,
       "name": "Sorteio de filmes favoritos",
