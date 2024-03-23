@@ -1,22 +1,46 @@
-[
-  {
-    "id": 1,
-    "name": "Início",
-    "path": "/"
-  },
-  {
-    "id": 2,
-    "name": "Favoritos",
-    "path": "/Favorites"
-  },
-  {
-    "id": 3,
-    "name": "Sorteio",
-    "path": "/Sorteio"
-  },
-  {
-    "id": 4,
-    "name": "Sobre",
-    "path": "/About"
-  }
-]
+{
+  "pt-BR": [
+    {
+      "id": 1,
+      "name": "Início",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "name": "Favoritos",
+      "path": "/Favorites"
+    },
+    {
+      "id": 3,
+      "name": "Sorteio",
+      "path": "/Sorteio"
+    },
+    {
+      "id": 4,
+      "name": "Sobre",
+      "path": "/About"
+    }
+  ],
+  "en-US": [
+    {
+      "id": 1,
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "name": "Favorites",
+      "path": "/Favorites"
+    },
+    {
+      "id": 3,
+      "name": "Draw",
+      "path": "/Sorteio"
+    },
+    {
+      "id": 4,
+      "name": "About",
+      "path": "/About"
+    }
+  ]
+}

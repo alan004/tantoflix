@@ -24,6 +24,8 @@ import Link from "next/link";
 import logo from "./TantoflixLogo.png";
 import Image from "next/image";
 import Footer from "../Footer";
+import LanguageSelector from "../LanguageSelector";
+import { Idiomas } from "@/interfaces/Idiomas";
 
 const drawerWidth = 240;
 
@@ -36,40 +38,72 @@ export default function ResponsiveDrawer(props: any) {
   };
 
   const iconesMenu = {
-    Início: <HomeIcon />,
-    Favoritos: <FavoriteIcon />,
-    Sorteio: <ChangeCircleIcon />,
-    Sobre: <InfoIcon />,
-  };
+    "pt-BR": {
+      Início: <HomeIcon />,
+      Favoritos: <FavoriteIcon />,
+      Sorteio: <ChangeCircleIcon />,
+      Sobre: <InfoIcon />,
+    },
+    "en-US": {
+      Home: <HomeIcon />,
+      Favorites: <FavoriteIcon />,
+      Draw: <ChangeCircleIcon />,
+      About: <InfoIcon />,
+    },
+  }
+  const language = localStorage.getItem("language");
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
   const drawer = (
-    <div>
-      <Toolbar>
-        <Image alt="logo Tantoflix" src={logo} width={300} height={40} />
-      </Toolbar>
-      <Divider />
-      <List>
-        {itens.map((e) => (
-          <Link
-            style={{
-              color: "white",
-              textDecoration: "none",
-            }}
-            href={e.path}
-            key={e.name}
-          >
-            <ListItem key={e.name} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {iconesMenu[e.name as keyof typeof iconesMenu]}
-                </ListItemIcon>
-                <ListItemText primary={e.name} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-    </div>
-  );
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
+      <Box>
+        <Toolbar>
+          <Image alt="logo Tantoflix" src={logo} width={300} height={40} />
+        </Toolbar>
+        <Divider />
+        <List>
+          {itens[LanguageSelected].map((e) => (
+            <Link
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+              href={e.path}
+              key={e.name}
+            >
+              <ListItem key={e.name} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {Object.keys(iconesMenu[LanguageSelected]).includes(
+                      e.name
+                    ) && (
+                      <ListItemIcon>
+                        {
+                          iconesMenu[LanguageSelected][
+                            e.name as keyof (typeof iconesMenu)[ChavesValidas]
+                          ]
+                        }
+                      </ListItemIcon>
+                    )}
+                  </ListItemIcon>
+                  <ListItemText primary={e.name} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+        <Divider />
+      </Box>
+      <LanguageSelector />
+    </Box>
+  )
 
   const container =
     window !== undefined ? () => window().document.body : undefined;

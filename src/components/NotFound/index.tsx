@@ -3,6 +3,8 @@ import image from "@/assets/not found.jpg";
 import NotFoundProps from "../../interfaces/NotFound.interface";
 
 export default function NotFound({ texto }: NotFoundProps) {
+  const language = localStorage.getItem("language");
+
   const style = {
     width: "100%",
     height: "auto",
@@ -18,7 +20,7 @@ export default function NotFound({ texto }: NotFoundProps) {
   return (
     <Box sx={style}>
       <Typography variant="h5" sx={{ p: ".75rem" }}>
-        {texto}. Fique com este gatinho no lugar :D
+        {texto}. {language === 'pt-BR' ? 'Fique com este gatinho no lugar :D' : 'Here is cat instead :D'}
       </Typography>
       <CardMedia
         component="img"

@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import NotFound from "@/components/NotFound";
 import DefaultTitle from "@/components/DefaultTitle";
+import translations from '@/app/translations.json'
+import { Idiomas } from "@/interfaces/Idiomas"
+import { useFavorites } from "@/context";
 
 const SearchResults: React.FC = () => {
   const searchParams = useSearchParams();
@@ -15,6 +18,11 @@ const SearchResults: React.FC = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const firstRequest = movies.results.length === 0;
+
+  const { language } = useFavorites();
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
+  const translation = translations.searchedPage;
 
   useEffect(() => {
     let timeoutId: any;
@@ -59,7 +67,7 @@ const SearchResults: React.FC = () => {
 
   return (
     <div>
-      <DefaultTitle text={["Resultados da Pesquisa:"]} />
+      <DefaultTitle text={translation[LanguageSelected].pageTitle} />
       {movieNotFoundMessage ? (
         <NotFound texto={["Nenhum filme encontrado"]} />
       ) : movies.results.length > 0 ? (

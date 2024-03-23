@@ -8,10 +8,18 @@ import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import { GenresResponse } from "@/interfaces/Genres.interface";
 import { Box, CircularProgress, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
+import translations from '@/app/translations.json'
+import { Idiomas } from "@/interfaces/Idiomas"
+import { useFavorites } from "@/context";
 
 export default function  PopularMovies() {
   const [genres, setGenres] = useState<GenresResponse | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
+  const { language } = useFavorites();
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
+  const translation = translations.popularMovies;
+
   useEffect(() => {
     getGenresList().then((data) => {
       setGenres(data);
@@ -22,7 +30,7 @@ export default function  PopularMovies() {
   return (
     <>
       <DefaultTitle
-        text={["Favorite e sorteie entre os filmes de sua lista!"]}
+        text={translation[LanguageSelected].title}
       />
       {isLoading && <><Skeleton sx={{pt: '2em'}} /><SkeletonTantoFlixPage/></>}
       <GenresList genres={genres} />

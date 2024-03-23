@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function Footer() {
   const drawerWidth = 240;
+  const language = localStorage.getItem("language");
   return (
     <Container
       sx={{
@@ -48,7 +49,7 @@ export default function Footer() {
         <Typography
           sx={{ color: "white", fontSize: "14px", textDecoration: "none" }}
         >
-          Desenvolvido por Alan Abilio
+          {language === 'pt-BR' ? 'Desenvolvido por Alan Abilio' : 'Developed by Alan Abilio'}
         </Typography>
       </Link>
     </Container>

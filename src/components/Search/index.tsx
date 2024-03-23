@@ -5,12 +5,14 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useFavorites } from "@/context";
 
 export default function Search() {
   const [inputContent, setInputContent] = React.useState("");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const { language } = useFavorites();
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
@@ -39,7 +41,7 @@ export default function Search() {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Procure pelo seu filme"
+        placeholder={language === 'pt-BR' ? 'Procure pelo seu filme' : 'Search for a movie!'}
         inputProps={{ "aria-label": "procure pelo filme" }}
         defaultValue={searchParams.get("query")?.toString()}
         onChange={(e) => setInputContent(e.target.value)}

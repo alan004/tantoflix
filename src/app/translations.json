@@ -1,0 +1,68 @@
+{
+  "aboutPage": {
+    "en-US": {
+      "title": "About the project",
+      "description": "Tantoflix, an app for indecisive movie lovers!",
+      "projectProposal": "My name is Alan and after realizing that I spent more time choosing movies than actually watching them, I decided to create a solution to this problem, Tantoflix. The proposal is simple: instead of getting lost in an endless list of options, you can favorite your favorite movies. When the time comes to choose, just press a button and let the cinematic destiny be decided by drawing.",
+      "behindTheScenes": "Behind the scenes, the website uses the TMDB API to fetch information about movies. All development was done with React and TypeScript, with a special touch from the Material-UI (MUI) library to ensure a beautiful and intuitive interface.",
+      "featuresImplemented": "Implemented features:"
+    },
+    "pt-BR": {
+      "title": "Sobre o projeto",
+      "description": "Tantoflix, um app para cinéfilos indecisos!",
+      "projectProposal": "Me chamo Alan e depois de perceber que passava mais tempo escolhendo filmes do que realmente assistindo, resolvi criar uma solução para este problema, o Tantoflix. A proposta é simples: ao invés de se perder em uma lista interminável de opções, você pode favoritar seus filmes preferidos. Quando chegar a hora da escolha, é só apertar um botão e deixar o destino cinematográfico ser decidido por sorteio.",
+      "behindTheScenes": "Nos bastidores, o site utiliza a API do TMDB para buscar informações sobre os filmes. Todo o desenvolvimento foi feito com React e TypeScript, com um toque especial da biblioteca Material-UI (MUI) para garantir uma interface bonita e intuitiva.",
+      "featuresImplemented": "Funcionalidades implementadas:"
+    }
+  },
+  "popularMovies": {
+    "en-US": {
+      "title": "Favorite and draw from your movie list!"
+    },
+    "pt-BR": {
+      "title": "Favorito e sorteie entre os filmes de sua lista!"
+    }
+  },
+  "favoritesPage":{  
+      "en-US": {
+        "title": "Your list of favorited movies!",
+        "noFavoritesMessage": "You haven't added any movies to your favorites yet :(",
+        "goToHomePageButton": "Go to homepage"
+      },
+      "pt-BR": {
+        "title": "Sua lista de filmes favoritados!",
+        "noFavoritesMessage": "Você ainda não adicionou nenhum filme aos favoritos :(",
+        "goToHomePageButton": "Ir para página inicial"
+      }
+  },
+  "searchedPage": {
+    "en-US": {
+      "pageTitle": "Search Results:",
+      "notFoundMessage": "No movies found"
+    },
+    "pt-BR": {
+      "pageTitle": "Resultados da Pesquisa:",
+      "notFoundMessage": "Nenhum filme encontrado"
+    }
+  },
+  "drawPage":{
+    "en-US": {
+      "title": "Random Draw",
+      "drawnMovieTitle": "The drawn movie is:",
+      "drawNewMovieButton": "Draw new movie",
+      "drawMovieButton": "Draw Movie",
+      "noFavoritesMessage": "It seems there are no movies in your favorites :(",
+      "drawMoviePrompt": "Click to draw a movie from your favorites list!",
+      "goToHomePageButton": "Go to homepage"
+    },
+    "pt-BR": {
+      "title": "Sorteio",
+      "drawnMovieTitle": "O filme sorteado foi:",
+      "drawNewMovieButton": "Sortear novo filme",
+      "drawMovieButton": "Sortear Filme",
+      "noFavoritesMessage": "Parece que não há nenhum filme nos seus favoritos :(",
+      "drawMoviePrompt": "Clique para sortear um filme de sua lista de favoritos!",
+      "goToHomePageButton": "Ir para página inicial"
+    }
+  }
+}

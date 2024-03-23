@@ -2,6 +2,8 @@ export default interface FavoritesData {
   favorites: FavoritesListProps[];
   addFavorite: (item: FavoritesListProps) => void;
   removeFavorite: (item: FavoritesListProps) => void;
+  language: string;
+  setLanguage: (lang: string) => void;
 }
 
 export interface FavoritesListProps {

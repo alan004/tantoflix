@@ -11,6 +11,8 @@ import SkeletonTantoFlixPage from "@/components/TantoFlixPage/Skeleton";
 import FavoritesData from "@/interfaces/Favorites.interface";
 import SorteadoProps from "@/interfaces/Sorteado.interface";
 import { MovieCardCreditsProps } from "@/interfaces/Movie.interface";
+import { Idiomas } from "@/interfaces/Idiomas"
+import translations from '@/app/translations.json'
 
 export default function Sorteio() {
   const favoritesData = useFavorites() as FavoritesData;
@@ -18,6 +20,11 @@ export default function Sorteio() {
   const [sorteado, setSorteado] = useState<SorteadoProps | null>(null);
   const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+
+  const { language } = useFavorites();
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
+  const translation = translations.drawPage;
 
   useEffect(() => {
     const favorites = favoritesData.favorites;
@@ -67,7 +74,7 @@ export default function Sorteio() {
             }}
           >
             <DefaultTitle
-              text={["O filme sorteado foi:"]}
+              text={translation[LanguageSelected].drawnMovieTitle}
               variant={["h5"]}
               align="left"
             />
@@ -77,7 +84,7 @@ export default function Sorteio() {
               variant="contained"
               color="secondary"
             >
-              Sortear novo filme
+              {translation[LanguageSelected].drawNewMovieButton}
             </Button>
           </Box>
 
@@ -99,8 +106,8 @@ export default function Sorteio() {
           <DefaultTitle
             text={
               movies.length > 0
-                ? ["Clique e sorteie um filme de sua lista de favoritos!"]
-                : ["Parece que não há nenhum filme nos seus favoritos :("]
+                ? [translation[LanguageSelected].drawMoviePrompt]
+                : [translation[LanguageSelected].noFavoritesMessage]
             }
           />
           {movies.length > 0 ? (
@@ -110,7 +117,7 @@ export default function Sorteio() {
               variant="contained"
               color="secondary"
             >
-              Sortear Filme
+              {translation[LanguageSelected].drawMovieButton}
             </Button>
           ) : (
             <Button size="large" variant="contained" color="secondary">
@@ -119,7 +126,7 @@ export default function Sorteio() {
                 href={"/"}
               >
                 {" "}
-                Ir para página inicial
+                {translation[LanguageSelected].goToHomePageButton}
               </Link>
             </Button>
           )}

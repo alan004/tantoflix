@@ -8,11 +8,18 @@ import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import DefaultTitle from "@/components/DefaultTitle";
 import FavoritesData from "@/interfaces/Favorites.interface";
+import translations from '@/app/translations.json'
+import { Idiomas } from "@/interfaces/Idiomas"
 
 export default function FavoritesPage() {
   const favoritesData = useFavorites() as FavoritesData;
+  const {language} = useFavorites();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
+  const translation = translations.favoritesPage;
 
   useEffect(() => {
     const favorites = favoritesData.favorites;
@@ -32,7 +39,7 @@ export default function FavoritesPage() {
     <>
       {movies.length > 0 && !loading ? (
         <>
-          <DefaultTitle text={["Sua lista de filmes favoritados!"]} />
+          <DefaultTitle text={translation[LanguageSelected].title} />
           <TantoFlixPage movies={movies} />
         </>
       ) : (
@@ -47,9 +54,7 @@ export default function FavoritesPage() {
               }}
             >
               <DefaultTitle
-                text={[
-                  "Você ainda não adicionou nenhum filme aos favoritos :(",
-                ]}
+                text={translation[LanguageSelected].noFavoritesMessage}
               />
               <Button size="large" variant="contained" color="secondary">
                 <Link
@@ -57,7 +62,7 @@ export default function FavoritesPage() {
                   href={"/"}
                 >
                   {" "}
-                  Ir para página inicial
+                  {translation[LanguageSelected].goToHomePageButton}
                 </Link>
               </Button>
             </Box>

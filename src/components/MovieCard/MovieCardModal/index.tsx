@@ -21,6 +21,8 @@ export default function MovieCardModal({ movie }: { movie: number }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const language = localStorage.getItem("language")
+
 
   const handleOpen = async () => {
     const details = await getMovieDetails(movie);
@@ -39,12 +41,17 @@ export default function MovieCardModal({ movie }: { movie: number }) {
     <>
       <Button
         onClick={handleOpen}
-        size={isMobile ? 'small' : 'large'}
+        size={isMobile ? "small" : "large"}
         variant="contained"
         color="secondary"
-        
       >
-        {isMobile? 'Mais': 'Ver mais'}
+        {language === "pt-BR"
+          ? isMobile
+            ? "Mais"
+            : "Ver mais"
+          : isMobile
+          ? "More"
+          : "See more"}
       </Button>
 
       <Modal
@@ -72,5 +79,5 @@ export default function MovieCardModal({ movie }: { movie: number }) {
         )}
       </Modal>
     </>
-  );
+  )
 }

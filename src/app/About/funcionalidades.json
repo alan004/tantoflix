@@ -1,32 +1,66 @@
-  [{
+{
+  "en": [
+    {
       "id": 1,
-      "nome": "Sorteio de filmes favoritos",
-      "descricao": "Realiza um sorteio entre os filmes favoritos do usuário."
+      "name": "Favorite Movies Draw",
+      "description": "Performs a draw among the user's favorite movies."
     },
     {
       "id": 2,
-      "nome": "Lista de Favoritos",
-      "descricao": "Permite ao usuário favoritar filmes e gerenciar uma lista de favoritos."
-
+      "name": "Favorites List",
+      "description": "Allows the user to favorite movies and manage a list of favorites."
     },
     {
       "id": 3,
-      "nome": "Detalhes do filme",
-      "descricao": "Apresenta detalhes específicos de um filme selecionado."
+      "name": "Movie Details",
+      "description": "Displays specific details of a selected movie."
     },
     {
       "id": 4,
-      "nome": "Filmes populares",
-      "descricao": "Exibe uma lista de filmes populares."
+      "name": "Popular Movies",
+      "description": "Displays a list of popular movies."
     },
     {
       "id": 5,
-      "nome": "Busca de filmes por nome",
-      "descricao": "Permite buscar filmes por nome."
+      "name": "Search Movies by Name",
+      "description": "Allows searching for movies by name."
     },
     {
       "id": 6,
-      "nome": "Filtro por gênero",
-      "descricao": "Permite buscar filmes por gênero."
+      "name": "Genre Filter",
+      "description": "Allows searching for movies by genre."
+    }
+  ],
+  "pt": [
+    {
+      "id": 1,
+      "name": "Sorteio de filmes favoritos",
+      "description": "Realiza um sorteio entre os filmes favoritos do usuário."
+    },
+    {
+      "id": 2,
+      "name": "Lista de Favoritos",
+      "description": "Permite ao usuário favoritar filmes e gerenciar uma lista de favoritos."
+    },
+    {
+      "id": 3,
+      "name": "Detalhes do filme",
+      "description": "Apresenta detalhes específicos de um filme selecionado."
+    },
+    {
+      "id": 4,
+      "name": "Filmes populares",
+      "description": "Exibe uma lista de filmes populares."
+    },
+    {
+      "id": 5,
+      "name": "Busca de filmes por name",
+      "description": "Permite buscar filmes por name."
+    },
+    {
+      "id": 6,
+      "name": "Filtro por gênero",
+      "description": "Permite buscar filmes por gênero."
     }
   ]
+}

@@ -1,3 +1,4 @@
+'use client';
 import DefaultTitle from "@/components/DefaultTitle"
 import {
   Box,
@@ -9,11 +10,17 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@mui/material"
-import selfie from "@/assets/alan.jpg"
 import funcionalidades from './funcionalidades.json'
 import { LabelImportant } from "@mui/icons-material"
+import { useFavorites } from "@/context"
+import translations from '@/app/translations.json'
+import { Idiomas } from "@/interfaces/Idiomas"
 
 export default function AboutPage() {
+  const { language } = useFavorites()
+  type ChavesValidas = keyof Idiomas;
+  const LanguageSelected: ChavesValidas = language as ChavesValidas;
+  const translation = translations.aboutPage;
   const style = {
     width: "100%",
     height: "auto",
@@ -39,8 +46,7 @@ export default function AboutPage() {
   }
   return (
     <>
-      <DefaultTitle text={["Sobre o projeto"]} />
-
+      <DefaultTitle text={translation[LanguageSelected].title} />
       <Box sx={style}>
         <Box
           sx={{
@@ -57,23 +63,14 @@ export default function AboutPage() {
         >
           <Typography variant="body1">
             {" "}
-            Tantoflix, um app para cinéfilos indecisos!
+            {translation[LanguageSelected].description}
           </Typography>
           <Divider sx={{ bgcolor: "secondary.main" }} />
           <Typography variant="body2" color="text.secondary">
-            Me chamo Alan e depois de o perceber que passava mais tempo
-            escolhendo filmes do que realmente assistindo, resolvi criar uma
-            solução para este problema, o Tantoflix. A proposta é simples: ao
-            invés de se perder em uma lista interminável de opções, você pode
-            favoritar seus filmes preferidos. Quando chegar a hora da escolha, é
-            só apertar um botão e deixar o destino cinematográfico ser decidido
-            por sorteio.
+          {translation[LanguageSelected].projectProposal}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Nos bastidores, o site utiliza a API do TMDB para buscar informações
-            sobre os filmes. Todo o desenvolvimento foi feito com React e
-            TypeScript, com um toque especial da biblioteca Material-UI (MUI)
-            para garantir uma interface bonita e intuitiva.
+          {translation[LanguageSelected].behindTheScenes}
           </Typography>
         </Box>
         <Box
@@ -91,14 +88,14 @@ export default function AboutPage() {
         >
           <Typography variant="body1">
             {" "}
-            Funcionalidades implementadas:
+            {translation[LanguageSelected].featuresImplemented}
           </Typography>
           <Divider sx={{ bgcolor: "secondary.main" }} />
           <List sx={listStyle}>
-            {funcionalidades.map((funcionalidade) => (
+            {funcionalidades[LanguageSelected].map((funcionalidade) => (
               <ListItem sx={{alignItems: 'center'}} key={funcionalidade.id}>
                 <ListItemIcon sx={{minWidth: '30px'}}><LabelImportant></LabelImportant></ListItemIcon>
-                <ListItemText>{funcionalidade.nome}</ListItemText>
+                <ListItemText>{funcionalidade.name}</ListItemText>
               </ListItem>
             ))}
           </List>

@@ -9,6 +9,7 @@ export default function MovieCardRandom({
   movie,
   credits,
 }: MovieCardDetailsProps) {
+  const language = localStorage.getItem("language")
   const genreNames = movie?.genres.map((genre) => genre.name).join(", ");
   const style = {
     width: "100%",
@@ -65,7 +66,7 @@ export default function MovieCardRandom({
           {movie?.title}
         </Typography>
         <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
-          <Typography variant="body1">{movie?.runtime} minutos</Typography>
+          <Typography variant="body1">{movie?.runtime} {language === 'pt-BR' ? 'minutos' : ' minutes' }</Typography>
           {movie?.vote_average !== undefined && (
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: '4px'}}>
                 <Typography variant="body1">{ratingConverter(movie.vote_average)}</Typography>
@@ -78,7 +79,7 @@ export default function MovieCardRandom({
           {movie?.overview != "" ? movie?.overview : samples.descricao}
         </Typography>
         <Box>
-          <Typography variant="body1">Elenco</Typography>
+          <Typography variant="body1">{language === 'pt-BR' ? 'Elenco' : 'Cast' }</Typography>
           <Box
             sx={{
               display: "flex",
@@ -100,7 +101,7 @@ export default function MovieCardRandom({
             </Typography>
           ))}
           </Box>  
-          <Typography sx={{pt: '.5rem'}} variant="body1">Direção</Typography>
+          <Typography sx={{pt: '.5rem'}} variant="body1">{language === 'pt-BR' ? 'Direção' : 'Director' }</Typography>
           <Box
               sx={{
                   display: 'flex',

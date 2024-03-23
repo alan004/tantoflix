@@ -74,6 +74,7 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
   }, [page])
 
   const isMobile = useMediaQuery("(max-width: 768px)")
+  const language = localStorage.getItem("language")
 
   const renderButtons = () => {
     return (
@@ -96,7 +97,7 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
             color="secondary"
             key="all"
           >
-            Todos
+            {language === "pt-BR" ? "Todos" : "All"}
           </Button>
         )}
         {genres?.genres?.map((genre) => (
@@ -125,7 +126,7 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
           sx={{ bgcolor: "transparent", margin: "16px 0" }}
         >
           <AccordionSummary expandIcon={<ArrowDropDownCircleOutlined />}>
-            <Typography>Categorias</Typography>
+            <Typography>{language === 'pt-BR' ? 'Categorias' : 'Genres' }</Typography>
           </AccordionSummary>
           <AccordionDetails>{renderButtons()}</AccordionDetails>
         </Accordion>
