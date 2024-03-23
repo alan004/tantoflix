@@ -1,9 +1,15 @@
-import axios from "axios";
+import apiConfig from "@/utils/apiConfig";
 const apiKey = process.env.TMDB_API_KEY;
 export async function getMovieBySearch(query: any, page: number) {
   try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}&language=pt-BR`
+    const response = await apiConfig.get(
+      `search/movie`, {
+        params: {
+          api_key: apiKey,
+          query: query,
+          page: page,
+        },
+      }
     );
     return response.data;
   } catch (error) {
