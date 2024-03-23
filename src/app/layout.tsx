@@ -18,8 +18,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  let language = "pt-BR"; // Valor padrão
+  
+  if (typeof window !== "undefined" && window.localStorage) {
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      language = storedLanguage;
+    }
+  }
   return (
-    <html lang="pt-BR">
+    <html lang={language}>
       <body className={inter.className}>
         <CustomTheme>
           <CssBaseline />

@@ -14,7 +14,10 @@ export const FavoritesProvider = ({ children }: any) => {
     typeof storedFavorites === "string" ? JSON.parse(storedFavorites) : [];
   const [favorites, setFavorites] =
     useState<FavoritesListProps[]>(initialFavorites);
-  const initialLanguage = isClient ? localStorage.getItem("language") || "pt-BR" : "pt-BR";
+    const initialLanguage = isClient
+    ? localStorage.getItem("language") || "pt-BR"
+    : "pt-BR";
+
   const [language, setLanguage] = useState<string>(initialLanguage);
 
   useEffect(() => {
@@ -34,8 +37,10 @@ export const FavoritesProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
+    if (isClient) {
       localStorage.setItem("language", language);
-  }, [language]);
+    }
+  }, [language, isClient]);
 
   const contextValue: FavoritesData = {
     favorites,

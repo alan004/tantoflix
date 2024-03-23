@@ -25,7 +25,7 @@ export default function  PopularMovies() {
       setGenres(data);
     });
     setIsLoading(false);
-  }, []);
+  }, [LanguageSelected]);
   
   return (
     <>

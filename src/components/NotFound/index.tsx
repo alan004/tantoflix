@@ -1,9 +1,11 @@
+'use client'
 import { Box, CardMedia, Typography } from "@mui/material";
 import image from "@/assets/not found.jpg";
 import NotFoundProps from "../../interfaces/NotFound.interface";
+import { useFavorites } from "@/context";
 
 export default function NotFound({ texto }: NotFoundProps) {
-  const language = localStorage.getItem("language");
+  const language = useFavorites().language;
 
   const style = {
     width: "100%",

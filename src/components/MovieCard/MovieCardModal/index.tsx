@@ -15,13 +15,14 @@ import MovieCardDetails from "../MovieCardDetails";
 import { getMovieDetails } from "@/api/getMovieDetails";
 import { getMovieCredits } from "@/api/getMovieCredits";
 import { MovieCardCreditsProps } from "@/interfaces/Movie.interface";
+import { useFavorites } from "@/context";
 
 export default function MovieCardModal({ movie }: { movie: number }) {
   const [open, setOpen] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
   const [credits, setCredits] = useState<MovieCardCreditsProps | undefined>(undefined);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const language = localStorage.getItem("language")
+  const language = useFavorites().language;
 
 
   const handleOpen = async () => {

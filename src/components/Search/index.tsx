@@ -39,7 +39,7 @@ export default function Search() {
         backgroundColor: "secondary.dark",
       }}
     >
-      <InputBase
+      <InputBase 
         sx={{ ml: 1, flex: 1 }}
         placeholder={language === 'pt-BR' ? 'Procure pelo seu filme' : 'Search for a movie!'}
         inputProps={{ "aria-label": "procure pelo filme" }}

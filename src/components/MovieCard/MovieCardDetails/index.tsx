@@ -18,7 +18,7 @@ export default function MovieCardDetails({
 
   const genreNames = movie?.genres.map((genre: any) => genre.name).join(", ");
   const isMobile = useMediaQuery("(max-width: 767px)");
-  const language = localStorage.getItem("language")
+  const language = useFavorites().language;
 
   return (
     <Box

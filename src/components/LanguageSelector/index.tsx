@@ -6,16 +6,16 @@ import { useFavorites } from "@/context";
 export default function LanguageSelector() {
   const { setLanguage } = useFavorites();
   return (
-    <Box sx={{ display: 'flex', gap: '4px', p: '1.5rem', '& svg': {cursor: 'pointer'}, justifyContent: 'space-evenly' }}>
+    <Box sx={{ display: 'flex', gap: '4px', '& svg': {cursor: 'pointer'}, justifyContent: 'space-evenly' }}>
     <BR width={32}
       title="Brazil"
       className="..."
-      onClick={() => {setLanguage("pt-BR"), window.location.reload()}}
+      onClick={() => {setLanguage("pt-BR")}}
     />
     <US width={32}
       title="United States"
       className="..."
-      onClick={() => {setLanguage("en-US"), window.location.reload()}} 
+      onClick={() => {setLanguage("en-US")}} 
     />
   </Box>
   )

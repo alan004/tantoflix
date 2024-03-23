@@ -30,6 +30,9 @@ const SearchResults: React.FC = () => {
     if (query) {
       setMovieNotFoundMessage(false);
       clearTimeout(timeoutId);
+      if (page === 1) {
+        setMovies({ results: [] }); // Reset movies only if it's the first page
+      }
       getMovieBySearch(query as string, page)
         .then((result) => {
           firstRequest ? setMovies(result) : setMovies((prevMovies) => ({ results: [...prevMovies.results, ...(result?.results || [])] }));
@@ -63,6 +66,8 @@ const SearchResults: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [page, totalPages]);
+
+  useEffect(() => { setPage(1) },[query]);
   
 
   return (

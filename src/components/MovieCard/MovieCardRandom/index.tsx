@@ -1,15 +1,17 @@
+'use client'
 import { Typography, Box, CardMedia } from "@mui/material";
 import sampleImage from "../MoviePoster.png";
 import samples from "../samples.json";
 import MovieCardDetailsProps from "@/interfaces/Movie.interface";
 import { ratingConverter } from "@/functions";
 import { Star } from "@mui/icons-material";
+import { useFavorites } from "@/context";
 
 export default function MovieCardRandom({
   movie,
   credits,
 }: MovieCardDetailsProps) {
-  const language = localStorage.getItem("language")
+  const language = useFavorites().language;
   const genreNames = movie?.genres.map((genre) => genre.name).join(", ");
   const style = {
     width: "100%",

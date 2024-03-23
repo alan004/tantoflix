@@ -26,6 +26,7 @@ import Image from "next/image";
 import Footer from "../Footer";
 import LanguageSelector from "../LanguageSelector";
 import { Idiomas } from "@/interfaces/Idiomas";
+import { useFavorites } from "@/context";
 
 const drawerWidth = 240;
 
@@ -51,7 +52,7 @@ export default function ResponsiveDrawer(props: any) {
       About: <InfoIcon />,
     },
   }
-  const language = localStorage.getItem("language");
+  const language = useFavorites().language;
   type ChavesValidas = keyof Idiomas;
   const LanguageSelected: ChavesValidas = language as ChavesValidas;
   const drawer = (
@@ -101,12 +102,11 @@ export default function ResponsiveDrawer(props: any) {
         </List>
         <Divider />
       </Box>
+      <Box sx={{paddingBottom: '1rem'}}>
       <LanguageSelector />
+      </Box>
     </Box>
   )
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -127,17 +127,12 @@ export default function ResponsiveDrawer(props: any) {
             flexDirection: "row",
             justifyContent: "right",
             width: "100%",
+            gap: ".5rem",
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Box sx={{'@media (min-width: 680px)': {display: 'none'}}} >
+            <LanguageSelector />
+          </Box>
           <Search />
         </Toolbar>
       </AppBar>
@@ -147,25 +142,6 @@ export default function ResponsiveDrawer(props: any) {
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClick={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-              backgroundColor: "secondary.dark",
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
         <Drawer
           variant="permanent"
           sx={{

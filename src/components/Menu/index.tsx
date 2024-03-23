@@ -1,9 +1,12 @@
+'use client';
 import { Idiomas } from "@/interfaces/Idiomas";
 import itens from "../Drawer/menu.json";
 import { List, ListItem } from "@mui/material";
+import { useFavorites } from "@/context";
 
 export default function Menu() {
-  const language = localStorage.getItem("language");
+  const language = useFavorites().language;
+
   type ChavesValidas = keyof Idiomas;
   const LanguageSelected: ChavesValidas = language as ChavesValidas;
   return (

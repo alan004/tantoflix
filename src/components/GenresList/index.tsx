@@ -16,6 +16,7 @@ import TantoFlixPage from "../TantoFlixPage"
 import SkeletonTantoFlixPage from "../TantoFlixPage/Skeleton"
 import { ArrowDropDownCircleOutlined } from "@mui/icons-material"
 import MovieCardProps from "@/interfaces/Movie.interface"
+import { useFavorites } from "@/context"
 
 const GenresList: React.FC<GenresListProps> = ({ genres }) => {
   const [movies, setMovies] = useState<MovieCardProps[]>([])
@@ -24,6 +25,14 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
   const [page, setPage] = useState(1)
   const [isFiltered, setIsFiltered] = useState(false)
   const [genreId, setGenre] = useState(0)
+  const { language } = useFavorites();
+
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage !== language) {
+      getAllMovies();
+    }
+  }, [language]);
 
   useEffect(() => {
     const firstRequest = movies.length === 0
@@ -74,7 +83,7 @@ const GenresList: React.FC<GenresListProps> = ({ genres }) => {
   }, [page])
 
   const isMobile = useMediaQuery("(max-width: 768px)")
-  const language = localStorage.getItem("language")
+
 
   const renderButtons = () => {
     return (
