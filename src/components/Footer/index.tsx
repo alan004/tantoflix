@@ -17,6 +17,7 @@ import { Idiomas } from "@/interfaces/Idiomas"
 export default function Footer() {
   const drawerWidth = 240
   const [windowSize, setWindowSize] = useState(0)
+  const actualPage = typeof window !== "undefined" ? window.location.pathname : ""
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,44 +46,8 @@ export default function Footer() {
     },
   }
 
-  return (
-    <Box
-      sx={{
-        backgroundColor: "rgba(49, 7, 79, 0.8)",
-        backdropFilter: "blur(5px)",
-        WebkitBackdropFilter: "blur(5px)",
-        width: "100%",
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {windowSize < 680 && (
-        <BottomNavigation
-          sx={{
-            display: { sm: "block", md: "none", lg: "none" },
-            alignItems: "center",
-            bottom: "40px",
-            backgroundColor: "transparent",
-          }}
-          showLabels
-        >
-          {menu[LanguageSelected].map((e) => (
-            <BottomNavigationAction
-              key={e.id}
-              label={e.name}
-              href={e.path}
-              icon={
-                iconesMenu[LanguageSelected][
-                  e.name as keyof (typeof iconesMenu)[ChavesValidas]
-                ]
-              }
-            />
-          ))}
-        </BottomNavigation>
-      )}
+  const DevelopedBy = () =>{
+    return (
       <Container
         sx={{
           display: "flex",
@@ -123,6 +88,48 @@ export default function Footer() {
           </Typography>
         </Link>
       </Container>
+    )
+  }
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "rgba(49, 7, 79, 0.8)",
+        backdropFilter: "blur(5px)",
+        WebkitBackdropFilter: "blur(5px)",
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {windowSize < 680 && (
+        <BottomNavigation
+          sx={{
+            display: { sm: "block", md: "none", lg: "none" },
+            alignItems: "center",
+            bottom: "40px",
+            backgroundColor: "transparent",
+          }}
+          showLabels
+        >
+          {menu[LanguageSelected].map((e) => (
+            <BottomNavigationAction
+              key={e.id}
+              label={e.name}
+              href={e.path}
+              icon={
+                iconesMenu[LanguageSelected][
+                  e.name as keyof (typeof iconesMenu)[ChavesValidas]
+                ]
+              }
+            />
+          ))}
+        </BottomNavigation>
+      )}
+    {windowSize >= 680 || (windowSize < 680 && actualPage === "/About") && <DevelopedBy />}
     </Box>
   )
 }
