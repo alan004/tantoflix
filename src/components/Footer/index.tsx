@@ -19,13 +19,15 @@ export default function Footer() {
   const [windowSize, setWindowSize] = useState(0)
   const actualPage = typeof window !== "undefined" ? window.location.pathname : ""
 
+  const validateWindowSize = () => {
+    setWindowSize(window.innerWidth);
+  }
+
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize(window.innerWidth)
-    }
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', validateWindowSize);
+    validateWindowSize();
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener('resize', validateWindowSize);
     }
   }, [])
   const { language } = useFavorites()
@@ -129,7 +131,7 @@ export default function Footer() {
           ))}
         </BottomNavigation>
       )}
-    {windowSize >= 680 || (windowSize < 680 && actualPage === "/About") && <DevelopedBy />}
+    {(windowSize >= 680 || actualPage === "/About") && <DevelopedBy />}
     </Box>
   )
 }
