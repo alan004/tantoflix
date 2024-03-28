@@ -36,6 +36,9 @@ export default function AboutPage() {
     "@media (min-width: 680px)": {
       flexDirection: "row",
     },
+    "@media (max-width: 680px)": {
+      margin: "1.5rem 0 5.5rem",
+    },
   }
   const listStyle = {
     p: 0,
