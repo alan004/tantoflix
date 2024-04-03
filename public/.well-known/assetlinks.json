@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.tantoflix.twa",
+      "sha256_cert_fingerprints": [
+        "3D:E7:07:3B:7A:DB:63:18:B7:D2:D1:BC:B6:42:D0:14:A0:87:56:6C:5C:48:6B:6D:C5:71:A3:1C:73:E1:BE:82"
+      ]
+    }
+  }
+]
