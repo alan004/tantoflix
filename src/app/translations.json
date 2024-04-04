@@ -26,12 +26,12 @@
   "favoritesPage":{  
       "en-US": {
         "title": "Your list of favorited movies!",
-        "noFavoritesMessage": "You haven't added any movies to your favorites yet :(",
+        "noFavoritesMessage": "Your favorites list is empty :(",
         "goToHomePageButton": "Go to homepage"
       },
       "pt-BR": {
         "title": "Sua lista de filmes favoritados!",
-        "noFavoritesMessage": "Você ainda não adicionou nenhum filme aos favoritos :(",
+        "noFavoritesMessage": "Ainda não há nenhum filme favoritado :(",
         "goToHomePageButton": "Ir para página inicial"
       }
   },
@@ -51,8 +51,8 @@
       "drawnMovieTitle": "The drawn movie is:",
       "drawNewMovieButton": "Draw new movie",
       "drawMovieButton": "Draw Movie",
-      "noFavoritesMessage": "It seems there are no movies in your favorites :(",
-      "drawMoviePrompt": "Click to draw a movie from your favorites list!",
+      "noFavoritesMessage": "Add movies to your list to raffle",
+      "drawMoviePrompt": "Click to draw a movie from your list!",
       "goToHomePageButton": "Go to homepage"
     },
     "pt-BR": {
@@ -60,8 +60,8 @@
       "drawnMovieTitle": "O filme sorteado foi:",
       "drawNewMovieButton": "Sortear novo filme",
       "drawMovieButton": "Sortear Filme",
-      "noFavoritesMessage": "Parece que não há nenhum filme nos seus favoritos :(",
-      "drawMoviePrompt": "Clique para sortear um filme de sua lista de favoritos!",
+      "noFavoritesMessage": "Adicione filme à sua lista para sortear!",
+      "drawMoviePrompt": "Clique para sortear um filme de sua lista!",
       "goToHomePageButton": "Ir para página inicial"
     }
   }
